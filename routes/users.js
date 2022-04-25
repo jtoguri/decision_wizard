@@ -21,5 +21,15 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
+
+  router.get("/:id", (req, res) => {
+    res.send(`Show page for user ${req.params.id}`);
+  });
+
+  router.get('/:id/login', (req, res) => {
+    res.send(`setting a cookie for ${req.params.id}`);
+    //fake login route sets a cookie
+  });
+
   return router;
 };
