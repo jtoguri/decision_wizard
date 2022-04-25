@@ -2,14 +2,14 @@
 
 ## Tables
 
-users
+***users***
 
 ### Columns
 - id (PK)
 - name
 - email
 
-polls
+***polls***
 
 ### Columns
 - id (PK)
@@ -23,7 +23,7 @@ polls
 - max votes (optional)
 - max time (optional)
 
-choices
+***choices***
 
 ### Columns
 - id (PK)
