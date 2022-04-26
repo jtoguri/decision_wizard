@@ -1,13 +1,13 @@
 --Seeding the choices table
 INSERT INTO choices 
-  (poll_id, title, score) VALUES 
-    (1, 'Red Lobster', 3);
+  (poll_id, title) VALUES 
+    (1, 'Red Lobster');
 INSERT INTO choices 
-  (poll_id, title, score) VALUES 
-    (1, 'McDonald''s', 4);
+  (poll_id, title) VALUES 
+    (1, 'McDonald''s');
 INSERT INTO choices 
-  (poll_id, title, score) VALUES 
-    (1, 'Hot Dog Stand', 7);
+  (poll_id, title) VALUES 
+    (1, 'Hot Dog Stand');
     
 INSERT INTO choices 
   (poll_id, title) VALUES 
@@ -21,9 +21,3 @@ INSERT INTO choices
 INSERT INTO choices 
   (poll_id, title) VALUES 
     (2, 'Pulp Fiction');
-    
-    
-    
-    
-    
-    
