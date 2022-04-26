@@ -26,6 +26,8 @@ module.exports = (db) => {
 
   //routes for /polls/new
   router.get('/new', (req, res) => {
+
+    
     res.send('diplay form to create a new poll');
   });
 
