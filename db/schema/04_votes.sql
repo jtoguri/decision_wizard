@@ -1,0 +1,9 @@
+-- Drop and recreate votes table
+
+DROP TABLE IF EXISTS votes CASCADE;
+CREATE TABLE votes (
+  id SERIAL PRIMARY KEY NOT NULL,
+  choice_id INT NOT NULL REFERENCES choices ON DELETE CASCADE,
+  user_id INT NULL REFERENCES users ON DELETE SET NULL,
+  position INT NOT NULL
+);
