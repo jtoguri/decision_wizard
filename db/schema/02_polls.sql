@@ -9,8 +9,6 @@ CREATE TABLE polls (
   creator_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   created_at DATE NOT NULL,
   closed_at DATE NULL,
-  vote_total INT DEFAULT 0,
-  max_votes INT NULL,
+  choice_count INT NOT NULL,
   max_time TIMESTAMP NULL
 );
-
