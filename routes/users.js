@@ -22,13 +22,20 @@ module.exports = (db) => {
       });
   });
 
-  router.get("/:id", (req, res) => {
-    res.send(`Show page for user ${req.params.id}`);
+  //fake login route sets a cookie
+  router.get('/:id/login', (req, res) => {
+    res.cookie('user_id', req.params.id)
+    .redirect(302, `/api/users/${req.params.id}`);
   });
 
-  router.get('/:id/login', (req, res) => {
-    res.send(`setting a cookie for ${req.params.id}`);
-    //fake login route sets a cookie
+  //fake logout route removes cookie and redirects to langing page
+  router.get('/:id/logout', (req, res) => {
+    res.clearCookie('user_id', req.params.id)
+    .redirect(302, '/api/polls/');
+  });
+
+  router.get("/:id", (req, res) => {
+    res.send(`Show page for user ${req.params.id}`);
   });
 
   return router;

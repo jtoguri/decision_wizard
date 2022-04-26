@@ -1,12 +1,13 @@
 /*
- * All routes for Users are defined here
- * Since this file is loaded in server.js into api/users,
- *   these routes are mounted onto /users
- * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
+ * All routes for Polls are defined here
+ * Since this file is loaded in server.js into api/polls,
+ *   these routes are mounted onto /polls
+ *
  */
 
 const express = require('express');
 const router  = express.Router();
+
 
 module.exports = (db) => {
   router.get('/', (req, res) => {
@@ -23,6 +24,7 @@ module.exports = (db) => {
     //   });
   });
 
+  //routes for /polls/new
   router.get('/new', (req, res) => {
     res.send('diplay form to create a new poll');
   });
@@ -32,6 +34,7 @@ module.exports = (db) => {
     //assuming no method override?
   });
 
+  // routes for /polls/:id
   router.get('/:id', (req, res) => {
     res.send('display a single poll');
   });
