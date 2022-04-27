@@ -55,7 +55,6 @@ module.exports = (db) => {
           `/polls/${pollId}/admin`, `/polls/${pollId}`, userId, choice_count]
       ).then(data => console.log(data.rows[0]))});
 
-    // console.log(req.body);
   });
 
   // routes for /polls/:id
