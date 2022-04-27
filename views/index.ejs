@@ -40,71 +40,69 @@
 
     <!-- GET POLL DETAILS -->
     <span>Create New Poll</span>
-    <form id="pollForm" action="/api/polls" method="post">
+    <form action="/api/polls" method="post">
       <span>Enter a question for your poll:</span><br />
       <input
         type="text"
         name="pollQuestion"
         placeholder="Where to eat tonight?"
-        required
       /><br />
       <br />
       <span>Enter the options that visitors can choose from:</span><br />
       <br />
-      <div id="optionsContainer">
-        <!-- OPTION 1 -->
-        <div class="option">
-          <span>Option:</span>
-          <input
-            type="text"
-            name="option1Title"
-            placeholder="Restaurant A"
-            required
-          /><br />
-          <span>Description:</span>
-          <input
-            type="text"
-            name="option1Description"
-            placeholder="Good and cheap."
-          /><br />
-        </div>
-        <br />
-
-        <!-- OPTION 2 -->
-        <div class="option">
-          <span>Option:</span>
-          <input
-            type="text"
-            name="option2Title"
-            placeholder="Restaurant B"
-            required
-          /><br />
-          <span>Description:</span>
-          <input
-            type="text"
-            name="option2Description"
-            placeholder="Good but expensive."
-          /><br />
-        </div>
-        <br />
-
-        <!-- OPTION 3 -->
-        <div class="option">
-          <span>Option:</span>
-          <input
-            type="text"
-            name="option3Title"
-            placeholder=""
-            required
-          /><br />
-          <span>Description:</span>
-          <input type="text" name="option3Description" placeholder="" /><br />
-        </div>
-        <br />
+      <!-- OPTION 1 -->
+      <div class="option">
+        <span>Option:</span>
+        <input
+          type="text"
+          name="option1Title"
+          placeholder="Restaurant A"
+          required
+        /><br />
+        <span>Description:</span>
+        <input
+          type="text"
+          name="option1Description"
+          placeholder="Good and cheap."
+        /><br />
       </div>
+      <br />
+
+      <!-- OPTION 2 -->
+      <div class="option">
+        <span>Option:</span>
+        <input
+          type="text"
+          name="option2Title"
+          placeholder="Restaurant B"
+          required
+        /><br />
+        <span>Description:</span>
+        <input
+          type="text"
+          name="option2Description"
+          placeholder="Good but expensive."
+        /><br />
+      </div>
+      <br />
+
+      <!-- OPTION 3 -->
+      <div class="option">
+        <span>Option:</span>
+        <input type="text" name="option3Title" placeholder="" required /><br />
+        <span>Description:</span>
+        <input type="text" name="option3Description" placeholder="" /><br />
+      </div>
+      <br />
 
       <!-- ADD ADDITIONAL OPTIONS -->
-      <button id="addOption">(+) Add more options</button><br /><br />
+      <script>
+        function addOption() {
+          document.write("<div class="option"><input type="text" name="" placeholder=""><input type="text" name="" placeholder=""></div>")
+        }
+      </script>
+      <button onclick="addOption()">(+) Add more options</button><br /><br />
+
       <input type="submit" value="Preview Poll" />
     </form>
 
