@@ -5,13 +5,13 @@
 
 | Name | Path | Verb | Purpose | Serves |
 | ---  | ---  | ---  | ------- | ----- |
-| Home | /  | GET | catchall | Redirect to /polls/ |
+| Home | /  | GET | catchall | Redirect to /polls |
 | Polls | /polls | GET | Display form to create a new poll | index.ejs |
-| Create | /polls | POST | Create a new poll | - |
+| Create | /polls | POST | Create a new poll | Redirect to /polls/:id |
 | View  | /polls/:id | GET | Display a poll  | poll.ejs |
 | Admin  | /polls/:id/admin | GET | Display form to update existing poll | edit.ejs |
-| Edit  | /polls/:id/edit | POST | Handle poll updates | -- |
-| Delete | /polls/:id/delete | POST | Delete a poll | -- |
+| Edit  | /polls/:id/edit | POST | Handle poll updates | Redirect to /polls/:id |
+| Delete | /polls/:id/delete | POST | Delete a poll | Redirect to /polls |
 
 ## User Routes 
 
