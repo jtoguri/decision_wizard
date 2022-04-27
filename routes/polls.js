@@ -11,7 +11,7 @@ const router  = express.Router();
 
 module.exports = (db) => {
   router.get('/', (req, res) => {
-    res.send('display all public polls here');
+    res.render('./index.ejs');
     // db.query(`SELECT * FROM polls;`)
     //   .then(data => {
     //     const polls = data.rows;
@@ -24,14 +24,7 @@ module.exports = (db) => {
     //   });
   });
 
-  //routes for /polls/new
-  router.get('/new', (req, res) => {
-    // res.send('diplay form to create a new poll');
-  
-  });
-
   router.post('/', (req, res) => {
-    //assuming no method override?
     let pollId;
     const question = req.body.pollQuestion;
     const user_id = 1;
@@ -49,16 +42,15 @@ module.exports = (db) => {
           `/polls/${pollId}`, `/polls/${pollId}`, user_id, choice_count]
       ).then(data => console.log(data.rows[0]))});
 
-    // console.log(req.body);
+    res.redirect(302, `polls/${pollId}`);
   });
 
-  // routes for /polls/:id
   router.get('/:id', (req, res) => {
     res.send('display a single poll');
   });
 
-  router.get('/:id/edit', (req, res) => {
-    res.send('display form to edit an existing poll');
+  router.get('/:id/admin', (req, res) => {
+    res.send('display admin page for existing poll');
   });
 
   router.post('/:id/edit', (req, res) => {
