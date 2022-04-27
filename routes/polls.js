@@ -36,11 +36,12 @@ module.exports = (db) => {
     let pollId;
     const question = req.body.pollQuestion;
     const choice_count = (Object.keys(req.body).length - 1) / 2;
+    const userId = req.cookies.user_id;
     
-    const cookieLocation = req.rawHeaders.length - 1;
-    const cookie = req.rawHeaders[cookieLocation].split(';')[2];
-    const userId = Number(cookie.split('=')[1]);
-    console.log(userId);
+//    const cookieLocation = req.rawHeaders.length - 1;
+//    const cookie = req.rawHeaders[cookieLocation].split(';')[2];
+//    const userId = Number(cookie.split('=')[1]);
+//    console.log(userId);
 
     db.query(`select max(id) from polls;`)
     .then(data => {
