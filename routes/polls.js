@@ -35,9 +35,13 @@ module.exports = (db) => {
     //assuming no method override? 
     let pollId;
     const question = req.body.pollQuestion;
-    const user_id = 1;
     const choice_count = (Object.keys(req.body).length - 1) / 2;
     
+    const cookieLocation = req.rawHeaders.length - 1;
+    const cookie = req.rawHeaders[cookieLocation].split(';')[2];
+    const userId = Number(cookie.split('=')[1]);
+    console.log(userId);
+
     db.query(`select max(id) from polls;`)
     .then(data => {
       pollId =  data.rows[0].max + 1})
@@ -47,7 +51,7 @@ module.exports = (db) => {
         choice_count) values
           ($1, $2, $3, $4, $5)
         returning *;`, [question,
-          `/polls/${pollId}`, `/polls/${pollId}`, user_id, choice_count]
+          `/polls/${pollId}/admin`, `/polls/${pollId}`, userId, choice_count]
       ).then(data => console.log(data.rows[0]))});
 
     // console.log(req.body);
