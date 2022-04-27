@@ -23,3 +23,8 @@
 | Logout | /users/:id/logout | GET | fake logou route | redirect to /polls |
 
 
+index.ejs
+edit.ejs
+poll.ejs
+
+

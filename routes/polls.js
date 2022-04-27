@@ -26,18 +26,17 @@ module.exports = (db) => {
 
   //routes for /polls/new
   router.get('/new', (req, res) => {
-
-    
-    res.send('diplay form to create a new poll');
+    // res.send('diplay form to create a new poll');
+  
   });
 
   router.post('/', (req, res) => {
-    //assuming no method override? 
+    //assuming no method override?
     let pollId;
     const question = req.body.pollQuestion;
     const user_id = 1;
     const choice_count = (Object.keys(req.body).length - 1) / 2;
-    
+
     db.query(`select max(id) from polls;`)
     .then(data => {
       pollId =  data.rows[0].max + 1})
