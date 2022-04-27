@@ -35,20 +35,20 @@ module.exports = (db) => {
     //assuming no method override? 
     let pollId;
     const question = req.body.pollQuestion;
-    const date = '2022-04-27';
     const user_id = 1;
-    console.log(req.cookie);
+    const choice_count = (Object.keys(req.body).length - 1) / 2;
+    
     db.query(`select max(id) from polls;`)
     .then(data => {
       pollId =  data.rows[0].max + 1})
     .then(() => {
       db.query(`insert into polls
-        (question, admin_link, submission_link, creator_id, created_at,
+        (question, admin_link, submission_link, creator_id,
         choice_count) values
-          ($1, $2, $3, $4, $5, $6)
+          ($1, $2, $3, $4, $5)
         returning *;`, [question,
-          `/polls/${pollId}`, `/polls/${pollId}`, user_id, date, 3]
-      )});
+          `/polls/${pollId}`, `/polls/${pollId}`, user_id, choice_count]
+      ).then(data => console.log(data.rows[0]))});
 
     // console.log(req.body);
   });
