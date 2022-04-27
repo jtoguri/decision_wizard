@@ -32,8 +32,25 @@ module.exports = (db) => {
   });
 
   router.post('/', (req, res) => {
-    console.log('create a new poll in the db');
-    //assuming no method override?
+    //assuming no method override? 
+    let pollId;
+    const question = req.body.pollQuestion;
+    const date = '2022-04-27';
+    const user_id = 1;
+    console.log(req.cookie);
+    db.query(`select max(id) from polls;`)
+    .then(data => {
+      pollId =  data.rows[0].max + 1})
+    .then(() => {
+      db.query(`insert into polls
+        (question, admin_link, submission_link, creator_id, created_at,
+        choice_count) values
+          ($1, $2, $3, $4, $5, $6)
+        returning *;`, [question,
+          `/polls/${pollId}`, `/polls/${pollId}`, user_id, date, 3]
+      )});
+
+    // console.log(req.body);
   });
 
   // routes for /polls/:id
