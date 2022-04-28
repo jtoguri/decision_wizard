@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="/styles/main.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
   <link rel="stylesheet" href="/styles/header.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/wizard.css" type="text/css" />
 
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
@@ -32,44 +33,31 @@
 
     <!-- GET POLL DETAILS -->
     <!-- <span>Create New Poll</span> -->
-    <form id="pollForm" action="/api/polls" method="post">
-      <h1>Help me decide...</H1>
-      <input type="text" name="pollQuestion" placeholder="Where to eat tonight?" />
-
-      <h3>Now add some options</h3>
-      <br />
-      <div id="optionsContainer">
-        <!-- OPTION 1 -->
-        <div class="option">
-          <span>Option:</span>
-          <input type="text" name="option1Title" placeholder="Restaurant A" required /><br />
-          <span>Description:</span>
-          <input type="text" name="option1Description" placeholder="Good and cheap." /><br />
-        </div>
-        <br />
-
-        <!-- OPTION 2 -->
-        <div class="option">
-          <span>Option:</span>
-          <input type="text" name="option2Title" placeholder="Restaurant B" required /><br />
-          <span>Description:</span>
-          <input type="text" name="option2Description" placeholder="Good but expensive." /><br />
-        </div>
-        <br />
-
-        <!-- OPTION 3 -->
-        <div class="option">
-          <span>Option:</span>
-          <input type="text" name="option3Title" placeholder="" required /><br />
-          <span>Description:</span>
-          <input type="text" name="option3Description" placeholder="" /><br />
-        </div>
-        <br />
+    <form id="pollForm" class="form" action="/api/polls" method="post">
+      <div class="mb-3">
+        <h1>Help me decide...</h1>
+        <input class="form-control" type="text" name="pollQuestion" placeholder="Where should we eat tonight?" />
       </div>
+      <div id="optionsContainer">
+        <div class="my-6">
+          <span>Now, for some options...</span><br><br>
+        </div>
+        <!-- OPTION 1 -->
+        <div class="option d-flex flex-column">
+          <!-- <span>Option:</span> -->
+          <input class="form-control" type="text" name="option1Title" placeholder="The hot dog stand" required />
+          <!-- <span>Description:</span> -->
+          <!-- <label for="option1Description" class="form-label">Description</label> -->
+          <input class="form-control" type="text" name="option1Description" placeholder="" /><br />
+          <button id="addOption" type="button" class="btn btn-outline-secondary btn-sm">Add another option</button><br>
+        </div>
 
-      <!-- ADD ADDITIONAL OPTIONS -->
-      <button id="addOption">(+) Add more options</button><br /><br />
-      <input type="submit" value="Preview Poll" />
+        <!-- ADD ADDITIONAL OPTIONS -->
+        <div class="d-flex flex-column">
+
+          <!-- <input type="submit" value=" /> -->
+          <input class="btn btn-warning btn-lg" type="submit" value="Preview Poll">
+        </div>
     </form>
 
     <!-- PREVIEW AND SHARE THE POLL -->
