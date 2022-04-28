@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Change this to name of Poll i.e. value of question -->
+    <title>POLL NAME</title>
+
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/header.css" type="text/css" />
+
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/app.js"></script>
+  </head>
+
+  <body>
+    <%- include('partials/_header') %>
+    <br />
+
+    <!-- ACTIVE POLLS -->
+    <div>
+      <h1>Active Polls</h1>
+
+      <h3>POLL NAME</h3>
+      <p>X is currently in the lead</p>
+      <p>DATE/TIME remaining in poll</p>
+
+      <h3>POLL NAME</h3>
+      <p>X is currently in the lead</p>
+      <p>DATE/TIME remaining in poll</p>
+    </div>
+
+    <!-- PAST POLLS -->
+    <div>
+      <h2>Past Polls</h2>
+
+      <h3>Poll Name</h3>
+      <p>Winner: Y</p>
+      <p>End Date: Feb. 24, 2021</p>
+
+      <h3>Poll Name</h3>
+      <p>Winner: X</p>
+      <p>End Date: Apr. 28, 2022</p>
+    </div>
+  </body>
+</html>
