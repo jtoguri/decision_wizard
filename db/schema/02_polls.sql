@@ -3,6 +3,7 @@
 DROP TABLE IF EXISTS polls CASCADE;
 CREATE TABLE polls (
   id SERIAL PRIMARY KEY NOT NULL,
+  external_uuid TEXT NOT NULL,
   question TEXT NOT NULL,
   admin_link TEXT NOT NULL,
   submission_link TEXT NOT NULL,
