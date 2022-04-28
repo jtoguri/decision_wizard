@@ -29,6 +29,7 @@ module.exports = (db) => {
     const question = req.body.pollQuestion;
     const choice_count = (Object.keys(req.body).length - 1) / 2;
     const userId = req.cookies.user_id;
+    console.log(req.body);
 
 //    const cookieLocation = req.rawHeaders.length - 1;
 //    const cookie = req.rawHeaders[cookieLocation].split(';')[2];
