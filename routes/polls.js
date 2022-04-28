@@ -26,6 +26,7 @@ module.exports = (db) => {
 
   router.post('/', (req, res) => {
     let newPoll;
+    let newChoices = [];
     let pollId;
     const question = req.body.question;
     const choices = req.body.choices;
@@ -64,23 +65,31 @@ module.exports = (db) => {
           returning *;`, pollQueryParams)
         .then(pollData => {
           newPoll = pollData.rows[0];
-          console.log(newPoll);
         })
         .then(() => {
-          for (const choice in choices) {
+            let promises = [];
+            for (const choice in choices) {
             const title = choices[choice].title;
-            const description = choices[choice].describe;
-            const choiceQueryParams = [ pollId, title, description];
+            const description = choices[choice].describe ?
+            choices[choice].describe : null;
+            const choiceQueryParams = [ newPoll.id, title, description];
             
-            db.query(`insert into choices
+            promises.push(
+              db.query(`insert into choices
               (poll_id, title, description) values
                 ($1, $2, $3)
               returning *;`, choiceQueryParams)
-            .then(choiceData => {
-              console.log(choiceData.rows[0]);
-            })
+            );
           }
+          Promise.all(promises).then(values => {
+            for (const value of values) {
+              console.log(value.rows);
+            }
+          })
         });
+        //.then(() => {
+        //  console.log(newPoll, newChoices);
+        //});
       });
 
 //    Promise.all([createPoll]).then(values => console.log(values[0].rows[0]));
