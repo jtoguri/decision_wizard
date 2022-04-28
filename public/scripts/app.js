@@ -1,12 +1,14 @@
 // Client facing scripts here
 $(document).ready(function () {
-  // Count all divs with .option class, use to increment input name with adding new options
-  const previousOption = document.querySelectorAll('.option').length;
-
+  
   // Create poll form --> click button to add additional option fields
-  $('#addOption').click(function (e) {
+  $( '#addOption' ).click(function (e) {
     // stops redirect
     e.preventDefault();
+
+    // Count all divs with .option class, use to increment input name with adding new options
+    const previousOption = document.querySelectorAll('.option').length;
+
     const newOption =
       $(`
         <div class="option">
@@ -18,6 +20,23 @@ $(document).ready(function () {
         <br>;
       `);
     $('#optionsContainer').append(newOption);
+  });
+  
+  $( "#pollForm" ).submit(function( e ) {
+    e.preventDefault();
+    console.log($( this ).serialize());
+    $.post( "/api/polls", $( this ).serialize(), function( data ) {
+      console.log(data);
+      const preview = $(`
+        <div>
+          <h3>${data.question}</h3>
+          <div>
+            <span>${data.choices[0].title}</span>
+          </div>
+        </div>
+      `);
+      $('body').append(preview);
+    });
   });
 });
 

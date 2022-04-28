@@ -26,28 +26,64 @@ module.exports = (db) => {
 
   router.post('/', (req, res) => {
     let pollId;
-    const question = req.body.pollQuestion;
-    const choice_count = (Object.keys(req.body).length - 1) / 2;
-    const userId = req.cookies.user_id;
+    const question = req.body.question;
+    const choices = req.body.choices;
+    const choiceCount = Object.keys(choices).length;
+    const userId = Number(req.cookies.user_id);
 
-//    const cookieLocation = req.rawHeaders.length - 1;
-//    const cookie = req.rawHeaders[cookieLocation].split(';')[2];
-//    const userId = Number(cookie.split('=')[1]);
-//    console.log(userId);
+    const pollQueryParams = [ question, userId, choiceCount ];
 
-    db.query(`select max(id) from polls;`)
-    .then(data => {
-      pollId =  data.rows[0].max + 1})
-    .then(() => {
-      db.query(`insert into polls
-        (question, admin_link, submission_link, creator_id,
-        choice_count) values
-          ($1, $2, $3, $4, $5)
-        returning *;`, [question,
-          `/polls/${pollId}/admin`, `/polls/${pollId}`, userId, choice_count]
-      ).then(data => console.log(data.rows[0]))});
+      db.query(`select max(id) from polls;`)
+      .then(data => {
+        pollId =  data.rows[0].max + 1;
+        pollQueryParams.push(`/polls/${pollId}/admin`, `polls/${pollId}`);
+      })
+      .then(() => {
+        db.query(`insert into polls
+          (question, creator_id, choice_count, admin_link, submission_link)
+          values
+            ($1, $2, $3, $4, $5)
+          returning *;`, pollQueryParams)
+        .then(pollData => {
+          return pollData.rows[0];
+        })
+        .then( ({ id, question }) => {
+            const newPollid = id;
 
-    res.redirect(302, `polls/${pollId}`);
+            let promises = [];
+            for (const choice in choices) {
+              const title = choices[choice].title;
+              const description = choices[choice].describe ?
+                choices[choice].describe : null;
+              const choiceQueryParams = [ newPollid, title, description];
+            
+              promises.push(
+                db.query(`insert into choices
+                  (poll_id, title, description) values
+                    ($1, $2, $3)
+                  returning *;`, choiceQueryParams)
+              );
+            }
+          
+            let newChoices = [];
+
+            Promise.all(promises).then(values => {
+              for (const value of values) {
+                newChoices.push({ 
+                  title: value.rows[0].title,
+                  description: value.rows[0].description
+                });
+              }
+              const responseData = {
+                question: question,
+                choices: newChoices
+              };
+              console.log(responseData);
+              res.json(responseData);
+            })
+        });
+      });
+
   });
 
   router.get('/:id', (req, res) => {
