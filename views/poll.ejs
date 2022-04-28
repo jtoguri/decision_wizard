@@ -17,24 +17,35 @@
   <body>
     <%- include('partials/_header') %>
     <br />
-    <!-- WELCOME -->
+    <!-- USER RANKS CHOICES -->
     <h1>Welcome to Decision Wizard</h1>
     <h2>CREATOR NAME needs your help making a decision:</h2>
 
     <h2>QUESTION goes here</h2>
-    <p>Use 'drag and drop' to put the options into the order from 1st choice to last choice.</p>
+    <p>
+      Use 'drag and drop' to rank the options from 1st choice to last choice.
+    </p>
     <p>CHOICE 1 --- 1ST CHOICE</p>
-    <p>CHOICE 2 --- 2ND CHOICE  </p>
-    <p>CHOICE 3 --- 3RD CHOICE </p>
+    <p>CHOICE 2 --- 2ND CHOICE</p>
+    <p>CHOICE 3 --- 3RD CHOICE</p>
     <button type="submit">SUBMIT</button>
 
-    Submission response message --- appears after clicking submit.
-    <p>Thank-you for making a submission</p>
-    <p>CREATOR NAME appreciates your help.</p>
-    <p>This poll ends on <DATE></p>
-    <p>Poll Results Page:</p>
-    <a href = "URL">POLL QUESTION</a>
-    <p>Created on DATE</p>
-    <p>We will send the final results of the poll to USEREMAIL</p>
+    <!-- THANK YOU FOR SUBMITTING MESSAGE -->
+    <div>
+      <p>Submission response message --- appears after clicking submit.</p>
+      <p>Thank-you for making a submission</p>
+      <p>CREATOR NAME appreciates your help.</p>
+    </div>
+
+    <!-- POLL RESULTS SO FAR -->
+    <p>Poll Results</p>
+    <p>(this poll is in progress)</p>
+    <div>
+      <p>Choice 1 ranking</p>
+      <p>Choice 2 ranking</p>
+      <p>Choice 3 ranking</p>
+      <p>This poll ends in TIME DURATION</p>
+      <p>At DATE TIME</p>
+    </div>
   </body>
 </html>
