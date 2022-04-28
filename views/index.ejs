@@ -44,7 +44,7 @@
       <span>Enter a question for your poll:</span><br />
       <input
         type="text"
-        name="pollQuestion"
+        name="question"
         placeholder="Where to eat tonight?"
       /><br />
       <br />
@@ -56,14 +56,14 @@
           <span>Option:</span>
           <input
             type="text"
-            name="titleOption1"
+            name="choices[choice1][title]"
             placeholder="Restaurant A"
             required
           /><br />
           <span>Description:</span>
           <input
             type="text"
-            name="descriptionOption1"
+            name="choices[choice1][describe]"
             placeholder="Good and cheap."
           /><br />
         </div>
@@ -74,14 +74,14 @@
           <span>Option:</span>
           <input
             type="text"
-            name="titleOption2"
+            name="choices[choice2][title]"
             placeholder="Restaurant B"
             required
           /><br />
           <span>Description:</span>
           <input
             type="text"
-            name="descriptionOption2"
+            name="choices[choice2][describe]"
             placeholder="Good but expensive."
           /><br />
         </div>
@@ -92,12 +92,12 @@
           <span>Option:</span>
           <input
             type="text"
-            name="titleOption3"
+            name="choices[choice3][title]"
             placeholder=""
             required
           /><br />
           <span>Description:</span>
-          <input type="text" name="descriptionOption3" placeholder="" />
+          <input type="text" name="choices[choice3][describe]" placeholder="" />
           <br />
         </div>
         <br />

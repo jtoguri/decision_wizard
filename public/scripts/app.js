@@ -2,7 +2,7 @@
 $(document).ready(function () {
   
   // Create poll form --> click button to add additional option fields
-  $('#addOption').click(function (e) {
+  $( '#addOption' ).click(function (e) {
     // stops redirect
     e.preventDefault();
 
@@ -20,6 +20,14 @@ $(document).ready(function () {
         <br>;
       `);
     $('#optionsContainer').append(newOption);
+  });
+  
+  $( "#pollForm" ).submit(function( e ) {
+    e.preventDefault();
+    console.log($( this ).serialize());
+    $.post( "/api/polls", $( this ).serialize(), function( data ) {
+      console.log(data);
+    });
   });
 });
 
