@@ -47,12 +47,14 @@ module.exports = (db) => {
 
     const newPollQueryString = `
       INSERT INTO polls 
-        (question, creator_id, choice_count, admin_link, submission_link)
+        (external_uuid, question, creator_id, choice_count, admin_link,
+          submission_link)
           VALUES
-            ($1, $2, $3, $4, $5)
+            ($1, $2, $3, $4, $5, $6)
       RETURNING *;`;
     
     const newPollQueryParams = [ 
+      externalPollId,
       question, 
       userId, 
       choiceCount, 
