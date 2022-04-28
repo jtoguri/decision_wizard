@@ -27,6 +27,15 @@ $(document).ready(function () {
     console.log($( this ).serialize());
     $.post( "/api/polls", $( this ).serialize(), function( data ) {
       console.log(data);
+      const preview = $(`
+        <div>
+          <h3>${data.question}</h3>
+          <div>
+            <span>${data.choices[0].title}</span>
+          </div>
+        </div>
+      `);
+      $('body').append(preview);
     });
   });
 });
