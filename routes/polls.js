@@ -6,6 +6,8 @@
  */
 
 const express = require('express');
+const { generateExternalPollId } = require("../helpers");
+
 const router  = express.Router();
 
 
@@ -24,68 +26,94 @@ module.exports = (db) => {
     //   });
   });
 
+  // Route to handle the creation of new polls
   router.post('/', (req, res) => {
-    let newPoll;
-    let pollId;
+    
+    // The external poll id is a v4 uuid
+    const externalPollId = generateExternalPollId();
+
+    // The admin link is for editing the poll and viewing the final
+    // results
+    // The submission link is for users to answer the poll
+    const adminLink = `/polls/${externalPollId}/admin`;
+    const submissionLink = `/polls/${externalPollId}`;
+
     const question = req.body.question;
+
     const choices = req.body.choices;
     const choiceCount = Object.keys(choices).length;
+
     const userId = Number(req.cookies.user_id);
 
-    const pollQueryParams = [ question, userId, choiceCount ];
+    const newPollQueryString = `
+      INSERT INTO polls 
+        (external_uuid, question, creator_id, choice_count, admin_link,
+          submission_link)
+          VALUES
+            ($1, $2, $3, $4, $5, $6)
+      RETURNING *;`;
+    
+    const newPollQueryParams = [ 
+      externalPollId,
+      question, 
+      userId, 
+      choiceCount, 
+      adminLink,
+      submissionLink
+    ];
 
-//  const cookieLocation = req.rawHeaders.length - 1;
-//  const cookie = req.rawHeaders[cookieLocation].split(';')[2];
-//  const userId = Number(cookie.split('=')[1]);
-//    const createPoll = 
-//      db.query(`select max(id) from polls;`)
-//      .then(data => {
-//        pollId =  data.rows[0].max + 1;
-//        queryParams.push(`/polls/${pollId}/admin`, `polls/${pollId}`);
-//      })
-//      .then(() => {
-//        return db.query(`insert into polls
-//          (question, creator_id, choice_count, admin_link, submission_link)
-//          values
-//            ($1, $2, $3, $4, $5)
-//          returning *;`, queryParams)
-//      });
+    db.query(newPollQueryString, newPollQueryParams)
+    
+    .then( data => {
+      pollData = data.rows[0];
+      return pollData;
+    })
 
-      db.query(`select max(id) from polls;`)
-      .then(data => {
-        pollId =  data.rows[0].max + 1;
-        pollQueryParams.push(`/polls/${pollId}/admin`, `polls/${pollId}`);
-      })
-      .then(() => {
-        db.query(`insert into polls
-          (question, creator_id, choice_count, admin_link, submission_link)
-          values
-            ($1, $2, $3, $4, $5)
-          returning *;`, pollQueryParams)
-        .then(pollData => {
-          newPoll = pollData.rows[0];
-          console.log(newPoll);
-        })
-        .then(() => {
-          for (const choice in choices) {
-            const title = choices[choice].title;
-            const description = choices[choice].describe;
-            const choiceQueryParams = [ pollId, title, description];
-            
-            db.query(`insert into choices
-              (poll_id, title, description) values
-                ($1, $2, $3)
-              returning *;`, choiceQueryParams)
-            .then(choiceData => {
-              console.log(choiceData.rows[0]);
-            })
-          }
-        });
+    .then( ({ id, question }) => {
+      const newPollid = id;
+
+      // Create an array to hold all the promises returned from the db
+      // queries
+      let promises = [];
+
+      const newChoiceQueryString = `
+        INSERT INTO choices
+          (poll_id, title, description) VALUES
+            ($1, $2, $3)
+        RETURNING *;`;
+
+      for (const choice in choices) {
+        const title = choices[choice].title;
+        
+        // If the description is an empty string, set it to null
+        const description = choices[choice].describe ?
+          choices[choice].describe : null;
+
+        const newChoiceQueryParams = [ newPollid, title, description ];
+        
+        promises.push(db.query(
+          newChoiceQueryString, newChoiceQueryParams));
+      }
+
+      let newChoices = [];
+
+      Promise.all(promises).then(values => {
+        for (const value of values) {
+          newChoices.push({
+            title: value.rows[0].title,
+            description: value.rows[0].description
+          });
+        }
+        
+        const responseData = {
+          question: question,
+          choices: newChoices
+        };
+        
+        console.log(responseData);
+        res.json(responseData);
       });
-
-//    Promise.all([createPoll]).then(values => console.log(values[0].rows[0]));
-
-    // res.redirect(302, `polls/${pollId}`);
+    });
   });
 
   router.get('/:id', (req, res) => {

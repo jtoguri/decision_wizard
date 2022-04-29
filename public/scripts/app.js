@@ -2,7 +2,7 @@
 $(document).ready(function () {
 
   // Create poll form --> click button to add additional option fields
-  $('#addOption').click(function (e) {
+  $( '#addOption' ).click(function ( e ) {
     // stops redirect
     e.preventDefault();
 
@@ -22,11 +22,25 @@ $(document).ready(function () {
     $('#optionsContainer').append(newOption);
   });
 
-  $("#pollForm").submit(function (e) {
+  $( "#pollForm" ).submit(function ( e ) {
     e.preventDefault();
-    console.log($(this).serialize());
-    $.post("/api/polls", $(this).serialize(), function (data) {
-      console.log(data);
+
+    const pollData = $( this ).serialize();
+    
+    $.post( "/api/polls", pollData, function( newPoll ) {  
+      const preview = $(`
+        <div>
+          <h3>${newPoll.question}</h3>
+            <ul>
+            </ul>  
+        </div>
+      `);
+
+      for (const choice of newPoll.choices) {
+        $( preview ).find( 'ul' ).append(`<li>${choice.title}</li>`);
+      } 
+      
+      $( '#pollPreview' ).append(preview);
     });
   });
 });

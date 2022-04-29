@@ -8,6 +8,7 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
+const { v4: uuidv4 } = require("uuid");
 
 // PG database client/connection setup
 const { Pool } = require("pg");
