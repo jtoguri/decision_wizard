@@ -23,15 +23,6 @@
 <body>
   <%- include('partials/_header') %>
     <br />
-    <!-- GET USER INFO -->
-    <!-- <div class="userInfo">
-      <form action="ADD_ROUTE_HERE" method="post">
-        <span>Name:</span><input type="text" name="creatorName" placeholder="Your name" required /><br />
-        <span>Email:</span><input type="text" name="email" placeholder="email@host.com" required /><br />
-        <input type="submit" placeholder="Submit" />
-      </form>
-      <hr />
-    </div> -->
 
     <!-- GET POLL DETAILS -->
     <form id="pollForm" class="form" action="/api/polls" method="post">
@@ -42,7 +33,7 @@
       </div>
 
       <div id="optionsContainer">
-        <div class="someOpts">
+        <div class="mt-5">
 
           <h5>Now, add some options...</h5>
 
@@ -54,7 +45,7 @@
             required />
           <input class="form-control" type="text" name="choices[choice1][describe]"
             placeholder="it's good and cheap" /><br />
-          <button class="btn btn-outline-secondary btn-sm removeOption" type="button"> - </button><br>
+          <button class="btn btn-outline-secondary btn-sm removeOption" type="button"> x </button><br>
         </div>
 
         <!-- OPTION 2 -->
@@ -62,30 +53,62 @@
           <input class="form-control" type="text" name="choices[choice2][title]" placeholder="Red Lobster" required />
           <input class="form-control" type="text" name="choices[choice2][describe]"
             placeholder="Close to the office" /><br />
-          <button class="btn btn-outline-secondary btn-sm removeOption" type="button"> - </button><br>
+          <button class="btn btn-outline-secondary btn-sm removeOption" type="button"> x </button><br>
         </div>
 
         <!-- OPTION 3 -->
         <div class="input-group option">
           <input class="form-control" type="text" name="choices[choice3][title]" placeholder="Old McDonalds" required />
           <input class="form-control" type="text" name="choices[choice3][describe]" placeholder="Tiny cheeseburgers" />
-          <button class="btn btn-outline-secondary btn-sm removeOption" type="button"> - </button>
+          <button class="btn btn-outline-secondary btn-sm removeOption" type="button"> x </button>
         </div>
 
       </div>
 
       <!-- ADD ADDITIONAL OPTIONS -->
-      <div class="d-flex justify-content-center my-2">
-        <button class="btn btn-primary btn-sm addOption" type="submit"> Add more </button>
-        <!-- <input type="submit" class="btn btn-primary btn-sm addOption" type="submit" value="more"> -->
+      <div class="d-flex justify-content-end my-3">
+        <button class="btn btn-outline-info btn-sm addOption" type="submit"> Add More Options</button>
       </div>
 
       </div>
 
-    <div id="pollPreview">
+      <!-- Check for a logged in user -->
 
-      <input type="submit" class="btn btn-info btn-lg" type="submit" value="Preview Poll">
-    </div>
+      <!-- If !cookie,
+        - remove d-none
+        - add d-flex class
+        - add required to both inputs
+      -->
+
+      <!-- If cookie,
+        - remove d-flex
+        - add d-none class
+        - remove required from both inputs
+      -->
+
+      <!-- <div id="userInfo" class="d-none row g-1 justify-content-between"> -->
+      <div id="userInfo" class="d-flex row g-1 justify-content-between">
+
+        <div class="col w-50">
+          <label for="name" class="form-label form-label-sm">Your Name:</label>
+          <input type="text" class="form-control form-control-sm" id="user[name]" name="user[name]"
+            placeholder="Fjord Windstar">
+        </div>
+        <div class="col w-50">
+          <label for="email" class="form-label form-label-sm">Email:</label>
+          <input type="email" class="form-control form-control-sm" id="user[email]" name="user[email]"
+            placeholder="fjord@windstar.com">
+        </div>
+      </div>
+
+      </div>
+
+      </div>
+
+      <div id="pollPreview" class="d-flex justify-content-center my-4">
+        <input type="submit" class="btn btn-warning btn-lg" type="submit" value="Preview Poll">
+        <!-- <p>PREVIEW OF POLL GOES HERE</p> -->
+      </div>
     </form>
 
     <!-- PREVIEW AND SHARE THE POLL -->
@@ -100,10 +123,10 @@
       <input type="email" id="email1" placeholder="email@host.com" /><br />
       <br />
       <input type="submit" value="Share Poll" />
+
     </form>
-    <hr />
-    <a href="URL HERE">Share this link with your friends</a><br />
-    <a href="URL HERE">View poll result here</a> -->
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
