@@ -1,46 +1,54 @@
 // Client facing scripts here
-$(document).ready(function () {
+
+
+
+
+
+$(document).ready(function() {
 
   // Create poll form --> click button to add additional option fields
-  $( '#addOption' ).click(function ( e ) {
+  $('.addOption').on("click", function(e) {
     // stops redirect
     e.preventDefault();
 
     // Count all divs with .option class, use to increment input name with adding new options
     const numberOfOptions = document.querySelectorAll('.option').length;
 
-    const newOption =
-      $(`
-        <div class="option">
-          <span>Option:</span>
-          <input type="text" name="titleOption${numberOfOptions + 1}" placeholder="" required><br>
-          <span>Description:</span>
-          <input type="text" name="descriptionOption${numberOfOptions + 1}" placeholder=""><br>
-        </div>
-        <br>;
-      `);
+    const newOption = $(`
+    <div class="input-group option">
+    <input class="form-control" type="text" name="choices[choice${numberOfOptions + 1}][title]" placeholder="New option" required />
+    <input class="form-control" type="text" name="choices[choice${numberOfOptions + 1}][describe]" placeholder="new decription" />
+    <button class="btn btn-outline-secondary btn-sm removeOption" type="button"> - </button>
+    </div>`
+    );
     $('#optionsContainer').append(newOption);
   });
 
-  $( "#pollForm" ).submit(function ( e ) {
+  $('.removeOption').on("click", function(e) {
+    e.preventDefault();
+    $(this).closest('div').remove();
+  });
+
+
+  $("#pollForm").submit(function(e) {
     e.preventDefault();
 
-    const pollData = $( this ).serialize();
-    
-    $.post( "/api/polls", pollData, function( newPoll ) {  
+    const pollData = $(this).serialize();
+
+    $.post("/api/polls", pollData, function(newPoll) {
       const preview = $(`
         <div>
           <h3>${newPoll.question}</h3>
             <ul>
-            </ul>  
+            </ul>
         </div>
       `);
 
       for (const choice of newPoll.choices) {
-        $( preview ).find( 'ul' ).append(`<li>${choice.title}</li>`);
-      } 
-      
-      $( '#pollPreview' ).append(preview);
+        $(preview).find('ul').append(`<li>${choice.title}</li>`);
+      }
+
+      $('#pollPreview').append(preview);
     });
   });
 });
