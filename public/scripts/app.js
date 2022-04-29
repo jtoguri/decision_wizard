@@ -1,10 +1,10 @@
 // Client facing scripts here
 
-
-
-
-
 $(document).ready(function() {
+
+  if (!confirmCookie()) {
+    console.log("no cookie");
+  }
 
   // Create poll form --> click button to add additional option fields
   $('.addOption').on("click", function(e) {
@@ -32,13 +32,7 @@ $(document).ready(function() {
 
   $("#pollForm").submit(function(e) {
     e.preventDefault();
-    const cookie = document.cookie.split('=')[1];
-    if (!cookie) {
-      $( "body" ).fadeTo(0, 0.2, () => {
-        $( "input" ).prop("readonly",true);
-      });
-      return;
-    }
+
     const pollData = $(this).serialize();
 
     $.post("/api/polls", pollData, function(newPoll) {
