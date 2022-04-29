@@ -2,8 +2,6 @@
 
 
 
-
-
 $(document).ready(function() {
 
   // Create poll form --> click button to add additional option fields
@@ -14,19 +12,32 @@ $(document).ready(function() {
     // Count all divs with .option class, use to increment input name with adding new options
     const numberOfOptions = document.querySelectorAll('.option').length;
 
-    const newOption = $(`
+    // const newOption = $(`
+    // <div class="input-group option">
+    // <input class="form-control" type="text" name="choices[choice${numberOfOptions + 1}][title]" placeholder="New option" required />
+    // <input class="form-control" type="text" name="choices[choice${numberOfOptions + 1}][describe]" placeholder="new decription" />
+    // <button class="btn btn-outline-secondary btn-sm removeOption" type="button"> - </button>
+    // </div>`
+    // );
+
+    const newOption = `
     <div class="input-group option">
     <input class="form-control" type="text" name="choices[choice${numberOfOptions + 1}][title]" placeholder="New option" required />
     <input class="form-control" type="text" name="choices[choice${numberOfOptions + 1}][describe]" placeholder="new decription" />
     <button class="btn btn-outline-secondary btn-sm removeOption" type="button"> - </button>
-    </div>`
-    );
+    </div>`;
+
+
     $('#optionsContainer').append(newOption);
   });
 
-  $('.removeOption').on("click", function(e) {
-    e.preventDefault();
-    $(this).closest('div').remove();
+  // $('.removeOption').on("click", function(e) {
+  //   e.preventDefault();
+  //   $(this).closest('div').remove();
+  // });
+
+  $(document).on("click", "button.removeOption", function() {
+      $(this).closest('div').remove();
   });
 
 
