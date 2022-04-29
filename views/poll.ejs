@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Change this to name of Poll i.e. value of question -->
+    <title>POLL NAME</title>
+
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/header.css" type="text/css" />
+
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/app.js"></script>
+  </head>
+
+  <body>
+    <%- include('partials/_header') %>
+    <br />
+    <!-- USER RANKS CHOICES -->
+    <h1>Welcome to Decision Wizard</h1>
+    <h2>CREATOR NAME needs your help making a decision:</h2>
+
+    <h2>QUESTION goes here</h2>
+    <p>
+      Use 'drag and drop' to rank the options from 1st choice to last choice.
+    </p>
+    <p>CHOICE 1 --- 1ST CHOICE</p>
+    <p>CHOICE 2 --- 2ND CHOICE</p>
+    <p>CHOICE 3 --- 3RD CHOICE</p>
+    <button type="submit">SUBMIT</button>
+
+    <!-- THANK YOU FOR SUBMITTING MESSAGE -->
+    <div>
+      <p>Submission response message --- appears after clicking submit.</p>
+      <p>Thank-you for making a submission</p>
+      <p>CREATOR NAME appreciates your help.</p>
+    </div>
+
+    <!-- POLL RESULTS SO FAR -->
+    <p>Poll Results</p>
+    <p>(this poll is in progress)</p>
+    <div>
+      <p>Choice 1 ranking</p>
+      <p>Choice 2 ranking</p>
+      <p>Choice 3 ranking</p>
+      <p>This poll ends in TIME DURATION</p>
+      <p>At DATE TIME</p>
+    </div>
+  </body>
+</html>
