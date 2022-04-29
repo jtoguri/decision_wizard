@@ -117,6 +117,30 @@ module.exports = (db) => {
   });
 
   router.get('/:id', (req, res) => {
+    const externalPollId = req.params.id;
+
+    const findPollQueryString = `
+      SELECT id, question FROM polls
+        WHERE external_uuid = $1;`;
+
+    const findPollQueryParams = [externalPollId];
+
+    const findChoicesQueryString = `
+      SELECT title, description FROM choices
+        WHERE poll_id = $1;`;
+
+    db.query(findPollQueryString, findPollQueryParams)
+    .then( pollData => pollData.rows[0])
+    .then( ({ id, question }) => {
+      const findChoicesQueryParams = [id];
+      db.query(findChoicesQueryString, findChoicesQueryParams)
+      .then( choiceData => choiceData.rows)
+      .then( choices => {
+        console.log(id, question);
+        console.log(choices);
+      });
+    });
+
     res.send('display a single poll');
   });
 
