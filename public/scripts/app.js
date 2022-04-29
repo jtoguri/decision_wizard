@@ -32,7 +32,13 @@ $(document).ready(function() {
 
   $("#pollForm").submit(function(e) {
     e.preventDefault();
-
+    const cookie = document.cookie.split('=')[1];
+    if (!cookie) {
+      $( "body" ).fadeTo(0, 0.2, () => {
+        $( "input" ).prop("readonly",true);
+      });
+      return;
+    }
     const pollData = $(this).serialize();
 
     $.post("/api/polls", pollData, function(newPoll) {
