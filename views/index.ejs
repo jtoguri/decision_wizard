@@ -39,10 +39,11 @@
         <input class="form-control" type="text" name="pollQuestion" placeholder="Where should we eat tonight?"
           required />
       </div>
+
       <div id="optionsContainer">
         <div class="someOpts">
 
-          <h5>Now, for some options...</h5>
+          <h5>Now, add some options...</h5>
 
         </div>
 
@@ -52,33 +53,32 @@
             required />
           <input class="form-control" type="text" name="choices[choice1][describe]"
             placeholder="it's good and cheap" /><br />
-          <button id="addOption" type="button" class="btn btn-outline-secondary btn-sm">+</button><br>
+          <button class="btn btn-outline-secondary btn-sm removeOption" type="button"> - </button><br>
         </div>
 
         <!-- OPTION 2 -->
         <div class="input-group option">
-          <input class="form-control" type="text" name="choices[choice1][title]" placeholder="Red Lobster" required />
-          <input class="form-control" type="text" name="choices[choice1][describe]"
+          <input class="form-control" type="text" name="choices[choice2][title]" placeholder="Red Lobster" required />
+          <input class="form-control" type="text" name="choices[choice2][describe]"
             placeholder="Close to the office" /><br />
-          <button id="addOption" type="button" class="btn btn-outline-secondary btn-sm">+</button><br>
+          <button class="btn btn-outline-secondary btn-sm removeOption" type="button"> - </button><br>
         </div>
 
 
         <!-- OPTION 3 -->
         <div class="input-group option">
           <input class="form-control" type="text" name="choices[choice3][title]" placeholder="Old McDonalds" required />
-          <input class="form-control" type="text" name="choices[choice3][describe]"
-            placeholder="Tiny cheeseburgers" /><br />
-          <button id="addOption" type="button" class="btn btn-outline-secondary btn-sm">+</button><br>
+          <input class="form-control" type="text" name="choices[choice3][describe]" placeholder="Tiny cheeseburgers" />
+          <button class="btn btn-outline-secondary btn-sm addOption" type="button">+</button>
         </div>
 
+      </div>
 
-        <!-- ADD ADDITIONAL OPTIONS -->
-        <div class="mt-5 d-flex justify-content-center">
+      <!-- ADD ADDITIONAL OPTIONS -->
+      <div class="mt-5 d-flex justify-content-center">
+        <input type="submit" class=" btn btn-info btn-lg" type="submit" value="Preview Poll">
+      </div>
 
-          <!-- <input type="submit" value=" /> -->
-          <input class="btn btn-info btn-lg" type="submit" value="Preview Poll">
-        </div>
     </form>
 
     <!-- PREVIEW AND SHARE THE POLL -->

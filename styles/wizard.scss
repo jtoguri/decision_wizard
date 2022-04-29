@@ -1,7 +1,15 @@
-#addOption {
+.addOption {
+  width: 40px;
+}
+
+.removeOption {
   width: 40px;
 }
 
 .someOpts {
   margin-top: 40px;
+}
+
+option > button {
+  width: 40px;
 }
