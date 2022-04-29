@@ -1,15 +1,10 @@
 // Client facing scripts here
-
 $(document).ready(function() {
-
-  if (!confirmCookie()) {
-    console.log("no cookie");
-  }
 
   // Create poll form --> click button to add additional option fields
   $('.addOption').on("click", function(e) {
     // stops redirect
-    e.preventDefault();
+    // e.preventDefault();
 
     // Count all divs with .option class, use to increment input name with adding new options
     const numberOfOptions = document.querySelectorAll('.option').length;
@@ -21,14 +16,13 @@ $(document).ready(function() {
     <button class="btn btn-outline-secondary btn-sm removeOption" type="button"> x </button>
     </div>`;
 
-
     $('#optionsContainer').append(newOption);
   });
+
 
   $(document).on("click", "button.removeOption", function() {
       $(this).closest('div').remove();
   });
-
 
   $("#pollForm").submit(function(e) {
     e.preventDefault();
@@ -52,4 +46,3 @@ $(document).ready(function() {
     });
   });
 });
-
