@@ -10,7 +10,7 @@ $(document).ready(function () {
     console.log("adding an option!");
 
     // Count all divs with .option class, use to increment input name with adding new options
-    const previousOption = document.querySelectorAll('.option').length;
+    const numberOfOptions = document.querySelectorAll('.option').length;
 
     const newOption =
       // $(`
@@ -44,18 +44,23 @@ $(document).ready(function () {
 
   $( "#pollForm" ).submit(function( e ) {
     e.preventDefault();
-    console.log($( this ).serialize());
-    $.post( "/api/polls", $( this ).serialize(), function( data ) {
-      console.log(data);
+
+    const pollData = $( this ).serialize();
+
+    $.post( "/api/polls", pollData, function( newPoll ) {
       const preview = $(`
         <div>
-          <h3>${data.question}</h3>
-          <div>
-            <span>${data.choices[0].title}</span>
-          </div>
+          <h3>${newPoll.question}</h3>
+            <ul>
+            </ul>
         </div>
       `);
-      $('body').append(preview);
+
+      for (const choice of newPoll.choices) {
+        $( preview ).find( 'ul' ).append(`<li>${choice.title}</li>`);
+      }
+
+      $( '#pollPreview' ).append(preview);
     });
   });
 });

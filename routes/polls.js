@@ -117,7 +117,37 @@ module.exports = (db) => {
   });
 
   router.get('/:id', (req, res) => {
-    res.send('display a single poll');
+    const externalPollId = req.params.id;
+
+    const findPollQueryString = `
+      SELECT id, question FROM polls
+        WHERE external_uuid = $1;`;
+
+    const findPollQueryParams = [externalPollId];
+
+    const findChoicesQueryString = `
+      SELECT title, description FROM choices
+        WHERE poll_id = $1;`;
+
+    db.query(findPollQueryString, findPollQueryParams)
+    .then( pollData => pollData.rows[0])
+    .then( ({ id, question }) => {
+      const findChoicesQueryParams = [id];
+      db.query(findChoicesQueryString, findChoicesQueryParams)
+      .then( choiceData => choiceData.rows)
+      .then( choices => {
+        console.log(id, question);
+        console.log(choices);
+        const templateVars = {
+          poll: {
+            question
+          },
+          choices
+        };
+
+        res.render('./poll.ejs', templateVars);
+      });
+    });
   });
 
   router.get('/:id/admin', (req, res) => {
