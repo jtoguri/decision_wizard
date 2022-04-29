@@ -38,7 +38,7 @@ module.exports = (db) => {
     const adminLink = `/polls/${externalPollId}/admin`;
     const submissionLink = `/polls/${externalPollId}`;
 
-    const question = req.body.question;
+    const question = req.body.pollQuestion;
 
     const choices = req.body.choices;
     const choiceCount = Object.keys(choices).length;

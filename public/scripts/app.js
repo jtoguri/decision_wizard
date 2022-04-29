@@ -1,8 +1,10 @@
 // Client facing scripts here
 
-
-
 $(document).ready(function() {
+
+  if (!confirmCookie()) {
+    console.log("no cookie");
+  }
 
   // Create poll form --> click button to add additional option fields
   $('.addOption').on("click", function(e) {
