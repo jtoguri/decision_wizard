@@ -138,10 +138,16 @@ module.exports = (db) => {
       .then( choices => {
         console.log(id, question);
         console.log(choices);
+        const templateVars = {
+          poll: {
+            question
+          },
+          choices
+        };
+
+        res.render('./poll.ejs', templateVars);
       });
     });
-
-    res.send('display a single poll');
   });
 
   router.get('/:id/admin', (req, res) => {
