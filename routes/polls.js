@@ -14,21 +14,11 @@ const router  = express.Router();
 module.exports = (db) => {
   router.get('/', (req, res) => {
     res.render('./index.ejs');
-    // db.query(`SELECT * FROM polls;`)
-    //   .then(data => {
-    //     const polls = data.rows;
-    //     res.json({ polls });
-    //   })
-    //   .catch(err => {
-    //     res
-    //       .status(500)
-    //       .json({ error: err.message });
-    //   });
   });
 
   // Route to handle the creation of new polls
   router.post('/', (req, res) => {
-    
+
     // The external poll id is a v4 uuid
     const externalPollId = generateExternalPollId();
 
@@ -46,24 +36,24 @@ module.exports = (db) => {
     const userId = Number(req.cookies.user_id);
 
     const newPollQueryString = `
-      INSERT INTO polls 
+      INSERT INTO polls
         (external_uuid, question, creator_id, choice_count, admin_link,
           submission_link)
           VALUES
             ($1, $2, $3, $4, $5, $6)
       RETURNING *;`;
-    
-    const newPollQueryParams = [ 
+
+    const newPollQueryParams = [
       externalPollId,
-      question, 
-      userId, 
-      choiceCount, 
+      question,
+      userId,
+      choiceCount,
       adminLink,
       submissionLink
     ];
 
     db.query(newPollQueryString, newPollQueryParams)
-    
+
     .then( data => {
       pollData = data.rows[0];
       return pollData;
@@ -84,13 +74,13 @@ module.exports = (db) => {
 
       for (const choice in choices) {
         const title = choices[choice].title;
-        
+
         // If the description is an empty string, set it to null
         const description = choices[choice].describe ?
           choices[choice].describe : null;
 
         const newChoiceQueryParams = [ newPollid, title, description ];
-        
+
         promises.push(db.query(
           newChoiceQueryString, newChoiceQueryParams));
       }
@@ -104,14 +94,14 @@ module.exports = (db) => {
             description: value.rows[0].description
           });
         }
-        
+
         const responseData = {
           question: question,
           choices: newChoices,
           submissionLink: submission_link,
           adminLink: admin_link
         };
-        
+
         console.log(responseData);
         res.json(responseData);
       });
@@ -119,7 +109,10 @@ module.exports = (db) => {
   });
 
   router.get('/:id', (req, res) => {
+
     const externalPollId = req.params.id;
+
+    console.log(req.params);
 
     const findPollQueryString = `
       SELECT id, question FROM polls
