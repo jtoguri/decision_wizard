@@ -19,10 +19,12 @@ $(document).ready(function() {
     $('#optionsContainer').append(newOption);
   });
 
-
   $(document).on("click", "button.removeOption", function() {
       $(this).closest('div').remove();
   });
+
+  // Create sortable list using jqueryUI sortable widget 
+  $("#sortable").sortable();
 
   $("#pollForm").submit(function(e) {
     e.preventDefault();
