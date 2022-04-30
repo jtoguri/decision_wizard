@@ -30,17 +30,8 @@ $(document).ready(function() {
     const pollData = $(this).serialize();
 
     $.post("/api/polls", pollData, function(newPoll) {
-      const preview = $(`
-        <div>
-          <h3>${newPoll.question}</h3>
-            <ul>
-            </ul>
-        </div>
-      `);
-
-      for (const choice of newPoll.choices) {
-        $(preview).find('ul').append(`<li>${choice.title}</li>`);
-      }
+      
+      const preview = createPollElement(newPoll);
 
       $('#pollPreview').append(preview);
     });
