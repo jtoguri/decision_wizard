@@ -31,9 +31,8 @@ $(document).ready(function() {
 
     $.post("/api/polls", pollData, function(newPoll) {
       
-      const preview = createPollElement(newPoll);
-
-      $('#pollPreview').append(preview);
+      const preview = createPreviewPage(newPoll);
+      $('#pollForm').replaceWith(preview);
     });
   });
 });

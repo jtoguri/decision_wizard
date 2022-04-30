@@ -69,7 +69,7 @@ module.exports = (db) => {
       return pollData;
     })
 
-    .then( ({ id, question }) => {
+    .then( ({ id, question, creator_id, admin_link, submission_link }) => {
       const newPollid = id;
 
       // Create an array to hold all the promises returned from the db
@@ -107,7 +107,9 @@ module.exports = (db) => {
         
         const responseData = {
           question: question,
-          choices: newChoices
+          choices: newChoices,
+          submissionLink: submission_link,
+          adminLink: admin_link
         };
         
         console.log(responseData);

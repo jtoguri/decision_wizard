@@ -6,18 +6,31 @@ const confirmCookie = function ()  {
   return cookieExists ? true : null;
 };
 
-const createPollElement = (pollData) => {
-  const preview = $(`
+// Creates an HTML element containing poll information
+const createPreviewPage = (pollData) => {
+  const message = $(`
+    <div>
+      <h2>Congrats! You just created a new poll!</h2>
+      <p>You may view a preview of your poll below and go to
+        <a href=${pollData.adminLink}>admin link</a> or
+        <a href=${pollData.submissionLink}>sub link</a>
+      </p>
+    </div>
+  `);
+
+  const poll = $(`
     <div>
       <h3>${pollData.question}</h3>
         <ul>
         </ul>
     </div>
   `);
-
+  
   for (const choice of pollData.choices) {
-    $(preview).find('ul').append(`<li>${choice.title}</li>`);
+    $(poll).find('ul').append(`<li>${choice.title}</li>`);
   }
 
-  return preview;
+  $(message).append(poll);
+
+  return message;
 };
