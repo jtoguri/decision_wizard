@@ -23,9 +23,6 @@ $(document).ready(function() {
       $(this).closest('div').remove();
   });
 
-  // Create sortable list using jqueryUI sortable widget 
-  $("#sortable").sortable();
-
   $("#pollForm").submit(function(e) {
     e.preventDefault();
 
@@ -34,6 +31,7 @@ $(document).ready(function() {
     $.post("/api/polls", pollData, function(newPoll) {
       
       const preview = createPreviewPage(newPoll);
+
       $('#pollForm').replaceWith(preview);
     });
   });
