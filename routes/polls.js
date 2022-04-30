@@ -25,8 +25,8 @@ module.exports = (db) => {
     // The admin link is for editing the poll and viewing the final
     // results
     // The submission link is for users to answer the poll
-    const adminLink = `/polls/${externalPollId}/admin`;
-    const submissionLink = `/polls/${externalPollId}`;
+    const adminLink = `localhost:8080/api/polls/${externalPollId}/admin`;
+    const submissionLink = `localhost:8080/api/polls/${externalPollId}`;
 
     const question = req.body.pollQuestion;
 
@@ -102,7 +102,6 @@ module.exports = (db) => {
           adminLink: admin_link
         };
 
-        console.log(responseData);
         res.json(responseData);
       });
     });
