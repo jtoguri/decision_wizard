@@ -24,12 +24,11 @@
   font-family: "Voltaire", sans-serif;
 }
 
-input {
+input,
+.addOption {
   font-family: "Jost", sans-serif;
 }
-button {
-  font-family: "Bowlby One", cursive;
-}
+
 // Layout
 #pollForm {
   margin-top: 3em;
@@ -38,4 +37,41 @@ button {
 // Color Scheme
 body {
   background-color: #e9edf3;
+}
+
+.form-control {
+  border: 2px solid black;
+  border-radius: 0.5em;
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+}
+
+.middleColumn {
+  border-top: 2px;
+  border-bottom: 2px;
+  border-left: 1px;
+  border-right: 1px;
+}
+.noRightBorder {
+  border-right: 0px;
+}
+
+#addMoreOptionsButton {
+  background-color: white;
+  border: 2px solid #ffc108;
+  color: black;
+}
+
+.removeOption {
+  font-family: "Bowlby One", cursive;
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+  border-top-right-radius: 0.5em !important;
+  border-bottom-right-radius: 0.5em !important;
+  // border-left: 1px;
+  margin: 4px 0 4px 1px;
+  padding: 6px 12px;
+  // margin-top: 0.25em;
+  // margin-bottom: 0.25em;
 }

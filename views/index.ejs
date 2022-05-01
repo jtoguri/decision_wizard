@@ -54,14 +54,14 @@
         <!-- OPTION 1 -->
         <div class="input-group option">
           <input
-            class="form-control"
+            class="form-control noRightBorder"
             type="text"
             name="choices[choice1][title]"
             placeholder="The hot dog stand"
             required
           />
           <input
-            class="form-control"
+            class="form-control noRightBorder"
             type="text"
             name="choices[choice1][describe]"
             placeholder="it's good and cheap"
@@ -70,21 +70,22 @@
             class="btn btn-outline-secondary btn-sm removeOption"
             type="button"
           >
-            x</button
-          ><br />
+            x
+          </button>
+          <br />
         </div>
 
         <!-- OPTION 2 -->
-        <div class="input-group option">
+        <div class="input-group">
           <input
-            class="form-control"
+            class="form-control noRightBorder"
             type="text"
             name="choices[choice2][title]"
             placeholder="Red Lobster"
             required
           />
           <input
-            class="form-control"
+            class="form-control noRightBorder"
             type="text"
             name="choices[choice2][describe]"
             placeholder="Close to the office"
@@ -98,16 +99,16 @@
         </div>
 
         <!-- OPTION 3 -->
-        <div class="input-group option">
+        <div class="input-group">
           <input
-            class="form-control"
+            class="form-control noRightBorder"
             type="text"
             name="choices[choice3][title]"
             placeholder="Old McDonalds"
             required
           />
           <input
-            class="form-control"
+            class="form-control noRightBorder"
             type="text"
             name="choices[choice3][describe]"
             placeholder="Tiny cheeseburgers"
@@ -123,7 +124,11 @@
 
       <!-- ADD ADDITIONAL OPTIONS -->
       <div class="d-flex justify-content-end my-3">
-        <button class="btn btn-outline-info btn-sm addOption" type="button">
+        <button
+          id="addMoreOptionsButton"
+          class="btn btn-outline-info btn-sm addOption"
+          type="button"
+        >
           Add More Options
         </button>
       </div>
