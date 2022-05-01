@@ -93,6 +93,13 @@ body {
   // margin-top: 0.25em;
   // margin-bottom: 0.25em;
 }
+.removeOption:hover {
+  // background-color: #6a3190;
+  background-color: black;
+  border: 2px solid black;
+  // color: #ffc108;
+  color: white;
+}
 
 .nav-link {
   margin-left: 3em;
