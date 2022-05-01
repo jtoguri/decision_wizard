@@ -2,6 +2,40 @@
   width: 40px;
 }
 
+#navMain {
+  background-color: #6a3190;
+}
+
 // #userInfo {
 //   display: none;
 // }
+
+// Fonts
+#navMain a {
+  font-family: "Voltaire", sans-serif;
+  color: white;
+}
+#helpDecide,
+#addOptions,
+.form-label {
+  font-family: "Raleway", sans-serif;
+}
+#previewPoll {
+  font-family: "Voltaire", sans-serif;
+}
+
+input {
+  font-family: "Jost", sans-serif;
+}
+button {
+  font-family: "Bowlby One", cursive;
+}
+// Layout
+#pollForm {
+  margin-top: 3em;
+}
+
+// Color Scheme
+body {
+  background-color: #e9edf3;
+}
