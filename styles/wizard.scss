@@ -4,6 +4,10 @@
 
 #navMain {
   background-color: #6a3190;
+  height: 6.5em;
+}
+#logo {
+  padding-bottom: 1em;
 }
 
 // #userInfo {
@@ -74,4 +78,9 @@ body {
   padding: 6px 12px;
   // margin-top: 0.25em;
   // margin-bottom: 0.25em;
+}
+
+.nav-link {
+  margin-left: 3em;
+  font-size: 1.5em;
 }
