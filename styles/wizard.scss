@@ -21,16 +21,25 @@
 }
 #helpDecide,
 #addOptions,
+#questionString,
 .form-label {
   font-family: "Raleway", sans-serif;
 }
-#previewPoll {
+#previewPoll,
+#submitPoll {
   font-family: "Voltaire", sans-serif;
 }
 
 input,
-.addOption {
+.addOption,
+#dragAndDrop,
+#instructions {
   font-family: "Jost", sans-serif;
+}
+#firstChoice {
+  color: #6a3190;
+  font-size: larger;
+  font-family: "Raleway", sans-serif;
 }
 
 // Layout

@@ -47,14 +47,14 @@
       <!-- <h1>Welcome to Decision Wizard</h1> -->
       <!-- <h2>CREATOR NAME needs your help making a decision:</h2> -->
 
-      <h2>
+      <h2 id="questionString">
         <%= poll.question %>
       </h2>
-      <!-- <p>
-        Use 'drag and drop' to rank the options from 1st choice to last choice.
-      </p> -->
+      <p id = "instructions">
+        Drag and drop to rank the options from <span id="firstChoice">1st</span> choice at the top to last choice at the bottom.
+      </p>
 
-      <div class="d-flex justify-content-center my-4">
+      <div id = "dragAndDrop" class="d-flex justify-content-center my-4">
         <form class="form" action="#" method="post">
           <ul id="sortable" class="ui-sortable list-group">
             <% for (const choice of choices) { %>
@@ -64,10 +64,18 @@
               <% } %>
           </ul>
       </div>
+      <div id="pollPreview" class="d-flex justify-content-center my-4">
+        <input
+          id="submitPoll"
+          type="submit"
+          class="btn btn-warning btn-lg"
+          type="submit"
+          value="Submit Poll"
+        />
 
-      <div class="d-flex justify-content-center my-4">
-        <button type="submit" class="btn btn-info" type="submit" value="Preview Poll">Submit</button>
-      </div>
+      <!-- <div class="d-flex justify-content-center my-4">
+        <button id="submitPoll" type="submit" class="btn btn-info" type="submit" value="Preview Poll">Submit</button>
+      </div> -->
 
       </form>
 
