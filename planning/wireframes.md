@@ -27,5 +27,7 @@
     * submit button
  
 ### Layout Option 2:
+![Site Mockup - 02](https://user-images.githubusercontent.com/41748727/166129322-41811e40-4a7b-4923-b464-12c4dbe2af54.png)
+- cleaned up design with color scheme and some web-fonts
 
 ### Layout Option 3:

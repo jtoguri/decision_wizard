@@ -111,8 +111,6 @@ module.exports = (db) => {
 
     const externalPollId = req.params.id;
 
-    console.log(req.params);
-
     const findPollQueryString = `
       SELECT id, question FROM polls
         WHERE external_uuid = $1;`;
@@ -120,7 +118,7 @@ module.exports = (db) => {
     const findPollQueryParams = [externalPollId];
 
     const findChoicesQueryString = `
-      SELECT title, description FROM choices
+      SELECT id, title, description FROM choices
         WHERE poll_id = $1;`;
 
     db.query(findPollQueryString, findPollQueryParams)
@@ -130,7 +128,6 @@ module.exports = (db) => {
       db.query(findChoicesQueryString, findChoicesQueryParams)
       .then( choiceData => choiceData.rows)
       .then( choices => {
-        console.log(id, question);
         console.log(choices);
         const templateVars = {
           poll: {
@@ -148,8 +145,31 @@ module.exports = (db) => {
     res.send('display admin page for existing poll');
   });
 
-  router.post('/:id/edit', (req, res) => {
-    console.log('post route to edit a poll');
+  router.post('/:id', (req, res) => {
+    const pollId = req.params.id;
+    const ranking = req.body.choice;
+    const userId = req.cookies.user_id ? req.cookies.user_id : null;
+    
+    const promises = [];
+    const queryString = `
+      INSERT INTO votes
+        (choice_id, user_id, position) VALUES
+          ($1, $2, $3)
+      RETURNING *;`;
+
+    for (let i = 0; i < ranking.length; i++) {
+      const position = i + 1;
+      const choiceId = Number(ranking[i]);
+
+      const queryParams = [choiceId, userId, position];
+      
+      promises.push(db.query(queryString, queryParams));
+    }
+
+    Promise.all(promises).then(values => {
+      for (const value of values) {
+        console.log(value.rows[0]);
+    }});
   });
 
   router.post('/:id/delete', (req, res) => {
