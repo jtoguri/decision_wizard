@@ -146,30 +146,56 @@ module.exports = (db) => {
   });
 
   router.post('/:id', (req, res) => {
-    const pollId = req.params.id;
     const ranking = req.body.choice;
-    const userId = req.cookies.user_id ? req.cookies.user_id : null;
+    const userId = req.cookies.user_id ? Number(req.cookies.user_id) 
+      : null;
     
-    const promises = [];
-    const queryString = `
+    let queryString = `
       INSERT INTO votes
         (choice_id, user_id, position) VALUES
-          ($1, $2, $3)
-      RETURNING *;`;
+          `;
 
-    for (let i = 0; i < ranking.length; i++) {
-      const position = i + 1;
+    const queryParams = [];
+    
+    let queryString2 = `
+      SELECT choices.id, choices.title, SUM(choice_count-position) AS score FROM votes
+        JOIN choices ON choices.id = votes.choice_id
+        JOIN polls ON polls.id = choices.poll_id
+          WHERE choice_id IN (`;
+
+    const queryParams2 = [];
+
+    for (let i= 0; i <ranking.length; i++) {
       const choiceId = Number(ranking[i]);
+      const position = i + 1;
 
-      const queryParams = [choiceId, userId, position];
-      
-      promises.push(db.query(queryString, queryParams));
+      queryParams.push(choiceId, userId, position); 
+      queryParams2.push(choiceId);
+
+      const count = queryParams.length;
+
+      queryString += `($${count - 2}, $${count - 1}, $${count})`
+
+      queryString2 += `$${i + 1}`
+
+      if (i < ranking.length - 1) {
+        queryString += ', ';
+        queryString2 += ', ';
+      }
     }
 
-    Promise.all(promises).then(values => {
-      for (const value of values) {
-        console.log(value.rows[0]);
-    }});
+    queryString += `\n  RETURNING *;`
+    queryString2 += ') GROUP BY choices.id ORDER BY score DESC;';
+
+    db.query(queryString, queryParams)
+    .then(data => console.log(data.rows))
+    .then(() => {
+      return db.query(queryString2, queryParams2);
+    })
+    .then(data2 => {
+      console.log(data2.rows);
+      res.json(data2.rows);
+    });
   });
 
   router.post('/:id/delete', (req, res) => {
