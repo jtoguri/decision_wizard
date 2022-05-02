@@ -18,6 +18,8 @@ const createPreviewPage = (pollData) => {
     </div>
   `);
 
+
+  //generates the poll element
   const poll = $(`
     <div>
       <h3>${pollData.question}</h3>
@@ -30,16 +32,14 @@ const createPreviewPage = (pollData) => {
     $(poll).find('ul').append(`<li>${choice.title}</li>`);
   }
 
+  //generate the action buttons
   const action = $(`
 
   <div class="d-flex justify-content-center my-4">
-  <a href=${pollData.submissionLink}<button type="button" class="btn btn-warning">Looks Good</button></a>
+  <a href=${pollData.adminLink}<button type="button" class="btn btn-primary">Looks Good</button></a>
 
   </div>
 
-  <div class="d-flex justify-content-center my-4">
-  <a href=${pollData.adminLink}<button type="button" class="btn btn-warning">Nope</button></a>
-  </div>
   </div>
 
   `)
