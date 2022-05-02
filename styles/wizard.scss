@@ -36,6 +36,9 @@ input,
 #instructions {
   font-family: "Jost", sans-serif;
 }
+#instructions {
+  text-align: center;
+}
 #firstChoice {
   color: #6a3190;
   font-size: larger;
@@ -111,4 +114,5 @@ body {
 }
 #hand {
   font-size: 1.5em;
+  color: #6a3190;
 }
