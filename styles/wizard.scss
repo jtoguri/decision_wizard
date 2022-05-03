@@ -2,6 +2,117 @@
   width: 40px;
 }
 
+#navMain {
+  background-color: #6a3190;
+  height: 6.5em;
+}
+#logo {
+  padding-bottom: 1em;
+}
+
 // #userInfo {
 //   display: none;
 // }
+
+// Fonts
+#navMain a {
+  font-family: "Voltaire", sans-serif;
+  color: white;
+}
+#helpDecide,
+#addOptions,
+#questionString,
+.form-label {
+  font-family: "Raleway", sans-serif;
+}
+#previewPoll,
+#submitPoll {
+  font-family: "Voltaire", sans-serif;
+}
+
+input,
+.addOption,
+#dragAndDrop,
+#instructions {
+  font-family: "Jost", sans-serif;
+}
+#instructions {
+  text-align: center;
+}
+#firstChoice {
+  color: #6a3190;
+  font-size: larger;
+  font-family: "Raleway", sans-serif;
+}
+
+// Layout
+#pollForm {
+  margin-top: 6em;
+}
+.container {
+  margin-top: 6em;
+}
+
+// Color Scheme
+body {
+  background-color: #e9edf3;
+}
+
+.form-control {
+  border: 2px solid black;
+  border-radius: 0.5em;
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+}
+
+.middleColumn {
+  border-top: 2px;
+  border-bottom: 2px;
+  border-left: 1px;
+  border-right: 1px;
+}
+.noRightBorder {
+  border-right: 0px;
+}
+
+#addMoreOptionsButton {
+  background-color: white;
+  border: 2px solid #ffc108;
+  color: black;
+}
+
+.removeOption {
+  // font-family: "Bowlby One", cursive;
+  font-family: "Permanent Marker", cursive;
+  font-size: 1em;
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+  border-top-right-radius: 0.5em !important;
+  border-bottom-right-radius: 0.5em !important;
+  // border-left: 1px;
+  margin: 4px 0 4px 1px;
+  padding: 6px 12px;
+  // margin-top: 0.25em;
+  // margin-bottom: 0.25em;
+}
+.removeOption:hover {
+  // background-color: #6a3190;
+  background-color: black;
+  border: 2px solid black;
+  // color: #ffc108;
+  color: white;
+}
+
+.nav-link {
+  margin-left: 3em;
+  font-size: 1.5em;
+}
+
+.list-group-item {
+  border: 2px solid black;
+}
+#hand {
+  font-size: 1.5em;
+  color: #6a3190;
+}

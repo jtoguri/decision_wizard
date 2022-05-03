@@ -1,8 +1,8 @@
 // Client facing scripts here
-$(document).ready(function() {
+$(document).ready(function () {
 
   // Create poll form --> click button to add additional option fields
-  $('.addOption').on("click", function(e) {
+  $('.addOption').on("click", function (e) {
     // stops redirect
     // e.preventDefault();
 
@@ -10,26 +10,26 @@ $(document).ready(function() {
     const numberOfOptions = document.querySelectorAll('.option').length;
 
     const newOption = `
-    <div class="input-group option">
-    <input class="form-control" type="text" name="choices[choice${numberOfOptions + 1}][title]" placeholder="New option" required />
-    <input class="form-control" type="text" name="choices[choice${numberOfOptions + 1}][describe]" placeholder="new decription" />
+    <div class="input-group">
+    <input class="form-control noRightBorder" type="text" name="choices[choice${numberOfOptions + 1}][title]" placeholder="New option" required />
+    <input class="form-control noRightBorder" type="text" name="choices[choice${numberOfOptions + 1}][describe]" placeholder="new decription" />
     <button class="btn btn-outline-secondary btn-sm removeOption" type="button"> x </button>
     </div>`;
 
     $('#optionsContainer').append(newOption);
   });
 
-  $(document).on("click", "button.removeOption", function() {
-      $(this).closest('div').remove();
+  $(document).on("click", "button.removeOption", function () {
+    $(this).closest('div').remove();
   });
 
-  $("#pollForm").submit(function(e) {
+  $("#pollForm").submit(function (e) {
     e.preventDefault();
 
     const pollData = $(this).serialize();
 
-    $.post("/api/polls", pollData, function(newPoll) {
-      
+    $.post("/api/polls", pollData, function (newPoll) {
+
       const preview = createPreviewPage(newPoll);
 
       $('#pollForm').replaceWith(preview);
