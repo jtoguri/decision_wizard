@@ -52,8 +52,17 @@ module.exports = (db) => {
     db.query(queryString, queryParams)
     .then(values => { return values.rows })
     .then(polls => {
-      const templateVars = { polls };
-      res.send(templateVars);
+      const activePolls = [];
+      const completedPolls = [];
+      for (const poll of polls) {
+        if (Date.UTC(poll.closed_at) < Date.now()) {
+          activePolls.push(poll);
+        } else {
+          completedPolls.push(poll);
+        }
+      }
+      const templateVars = { activePolls, completedPolls,  user: userId };
+      res.render("user", templateVars);
     });
 
   });
