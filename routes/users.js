@@ -35,7 +35,27 @@ module.exports = (db) => {
   });
 
   router.get("/:id", (req, res) => {
-    res.send(`Show page for user ${req.params.id}`);
+    const currentUserId = req.cookies.user_id;
+    const userId = req.params.id;
+  
+    if (currentUserId !==userId) {
+      res.send("Invalid request, you do not have access to this page.");
+      return;
+    }
+    
+    const queryString = `
+      select * from polls
+        where polls.creator_id = $1;`;
+
+    const queryParams = [userId];
+    
+    db.query(queryString, queryParams)
+    .then(values => { return values.rows })
+    .then(polls => {
+      const templateVars = { polls };
+      res.send(templateVars);
+    });
+
   });
 
   return router;
