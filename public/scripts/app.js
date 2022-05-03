@@ -28,11 +28,6 @@ $(document).ready(function () {
 
     const pollData = $(this).serialize();
 
-    $.post("/api/polls", pollData, function (newPoll) {
-
-      const preview = createPreviewPage(newPoll);
-
-      $('#pollForm').replaceWith(preview);
-    });
+    $.post("/api/polls", pollData)
   });
 });
