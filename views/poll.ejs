@@ -5,14 +5,28 @@
   <!-- Change this to name of Poll i.e. value of question -->
   <title>🧙 Decision Wizard</title>
 
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+    crossorigin="anonymous"
+  />
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/main.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
   <link rel="stylesheet" href="/styles/header.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/wizard.css" type="text/css" />
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <!-- Link to fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Jost&family=Permanent+Marker&family=Raleway:wght@800&family=Voltaire&display=swap"
+    rel="stylesheet"
+  />
+  <!-- Link to fontsawesome (icons) -->
+  <script src="https://kit.fontawesome.com/ebefa7c07e.js" crossorigin="anonymous"></script>
 
   <!-- <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/smoothness/jquery-ui.css" type="text/css" /> -->
   <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
@@ -25,6 +39,8 @@
 
 <body>
   <%- include('partials/_header') %>
+    <br />
+
 
     <!-- USER RANKS CHOICES -->
 
@@ -33,14 +49,15 @@
       <!-- <h1>Welcome to Decision Wizard</h1> -->
       <!-- <h2>CREATOR NAME needs your help making a decision:</h2> -->
 
-      <h2>
+      <h2 id="questionString">
         <%= poll.question %>
       </h2>
-      <!-- <p>
-        Use 'drag and drop' to rank the options from 1st choice to last choice.
-      </p> -->
 
-      <div class="d-flex justify-content-center my-4">
+      <p id="instructions">
+        <i id="hand" class="fa-regular fa-hand"></i>  Drag and drop to rank the options <br>(<span id="firstChoice">1st</span> choice at the top, last choice at the bottom)
+      </p>
+
+      <div id = "dragAndDrop" class="d-flex justify-content-center my-4">
         <form class="form" id= "voteSubmit" action="/api/polls/:id" method="post">
           <ol id="sortable" class="ui-sortable list-group">
             <% for (const choice of choices) { %>
@@ -50,10 +67,18 @@
               <% } %>
           </ol>
       </div>
+      <div id="pollPreview" class="d-flex justify-content-center my-4">
+        <input
+          id="submitPoll"
+          type="submit"
+          class="btn btn-warning btn-lg"
+          type="submit"
+          value="Submit Poll"
+        />
 
-      <div class="d-flex justify-content-center my-4">
-        <button type="submit" class="btn btn-info" type="submit" value="Preview Poll">Submit</button>
-      </div>
+      <!-- <div class="d-flex justify-content-center my-4">
+        <button id="submitPoll" type="submit" class="btn btn-info" type="submit" value="Preview Poll">Submit</button>
+      </div> -->
 
       </form>
 
