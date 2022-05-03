@@ -111,8 +111,6 @@ module.exports = (db) => {
 
     const externalPollId = req.params.id;
 
-    console.log(req.params);
-
     const findPollQueryString = `
       SELECT id, question FROM polls
         WHERE external_uuid = $1;`;
@@ -120,7 +118,7 @@ module.exports = (db) => {
     const findPollQueryParams = [externalPollId];
 
     const findChoicesQueryString = `
-      SELECT title, description FROM choices
+      SELECT id, title, description FROM choices
         WHERE poll_id = $1;`;
 
     db.query(findPollQueryString, findPollQueryParams)
@@ -130,7 +128,6 @@ module.exports = (db) => {
       db.query(findChoicesQueryString, findChoicesQueryParams)
       .then( choiceData => choiceData.rows)
       .then( choices => {
-        console.log(id, question);
         console.log(choices);
         const templateVars = {
           poll: {
@@ -148,8 +145,57 @@ module.exports = (db) => {
     res.send('display admin page for existing poll');
   });
 
-  router.post('/:id/edit', (req, res) => {
-    console.log('post route to edit a poll');
+  router.post('/:id', (req, res) => {
+    const ranking = req.body.choice;
+    const userId = req.cookies.user_id ? Number(req.cookies.user_id) 
+      : null;
+    
+    let queryString = `
+      INSERT INTO votes
+        (choice_id, user_id, position) VALUES
+          `;
+
+    const queryParams = [];
+    
+    let queryString2 = `
+      SELECT choices.id, choices.title, SUM(choice_count-position) AS score FROM votes
+        JOIN choices ON choices.id = votes.choice_id
+        JOIN polls ON polls.id = choices.poll_id
+          WHERE choice_id IN (`;
+
+    const queryParams2 = [];
+
+    for (let i= 0; i <ranking.length; i++) {
+      const choiceId = Number(ranking[i]);
+      const position = i + 1;
+
+      queryParams.push(choiceId, userId, position); 
+      queryParams2.push(choiceId);
+
+      const count = queryParams.length;
+
+      queryString += `($${count - 2}, $${count - 1}, $${count})`
+
+      queryString2 += `$${i + 1}`
+
+      if (i < ranking.length - 1) {
+        queryString += ', ';
+        queryString2 += ', ';
+      }
+    }
+
+    queryString += `\n  RETURNING *;`
+    queryString2 += ') GROUP BY choices.id ORDER BY score DESC;';
+
+    db.query(queryString, queryParams)
+    .then(data => console.log(data.rows))
+    .then(() => {
+      return db.query(queryString2, queryParams2);
+    })
+    .then(data2 => {
+      console.log(data2.rows);
+      res.json(data2.rows);
+    });
   });
 
   router.post('/:id/delete', (req, res) => {
