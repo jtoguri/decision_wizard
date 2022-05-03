@@ -13,7 +13,7 @@ const router  = express.Router();
 
 module.exports = (db) => {
   router.get('/', (req, res) => {
-    res.render('./index.ejs');
+    res.render('./index.ejs', {user: req.cookies.user_id});
   });
 
   // Route to handle the creation of new polls
@@ -133,7 +133,8 @@ module.exports = (db) => {
               poll: {
                 question
               },
-              choices
+              choices,
+              user: req.cookies.user_id
             };
 
             res.render('./poll.ejs', templateVars);

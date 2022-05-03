@@ -14,5 +14,5 @@ INSERT INTO polls
 INSERT INTO polls
   (external_uuid, question, admin_link, submission_link, creator_id, created_at,
   closed_at, choice_count) VALUES
-    ('bears', 'Which Bear is Best?', 'adminlink2.com', 'sublink2.com', 3,
+    ('bears', 'Which Bear is Best?', 'api/polls/bears/admin', 'api/polls/bears', 3,
     '2022-5-01', NULL, 3);
