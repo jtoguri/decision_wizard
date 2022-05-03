@@ -6,7 +6,7 @@
  */
 
 const express = require('express');
-const { generateExternalPollId, sendMail } = require("../helpers");
+const { generateExternalPollId, sendNewResponseMail, sendNewPollMail } = require("../helpers");
 
 const router  = express.Router();
 
@@ -102,8 +102,12 @@ module.exports = (db) => {
             adminLink: admin_link
           };
 
+          console.log(responseData);
+
           res.json(responseData);
         });
+
+
       });
   });
 
@@ -209,7 +213,7 @@ module.exports = (db) => {
         return db.query(queryString3, queryParams3);
       })
       .then(data3 => {
-        sendMail(data3);
+        sendNewResponseMail(data3);
         //do things with mailgun
       });
 
