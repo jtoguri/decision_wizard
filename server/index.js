@@ -26,10 +26,10 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 
 app.use(
-  "/styles",
+  "../styles",
   sassMiddleware({
-    source: __dirname + "/styles",
-    destination: __dirname + "/public/styles",
+    source: __dirname + "../styles",
+    destination: __dirname + "../public/styles",
     isSass: false, // false => scss, true => sass
   })
 );
@@ -54,7 +54,9 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Separate them into separate routes files (see above).
 
 app.get("/", (req, res) => {
-  res.render("index");
+  const userId = req.cookies.user_id;
+  
+  res.render("index", {user: userId});
 });
 
 app.listen(PORT, () => {
