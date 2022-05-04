@@ -49,6 +49,19 @@ module.exports = (db) => {
       return db.query(queryString, queryParams);
     },
 
+    getPollByUUID: (uuid) => {
+      const queryString = `
+        SELECT polls.question, array_agg(choices.id) AS ids, array_agg(choices.title) AS choices,
+        array_agg(choices.description) AS descriptions
+          FROM choices
+            JOIN polls on polls.id = choices.poll_id
+          WHERE polls.external_uuid = $1
+        GROUP BY polls.id;`;
+      const queryParams = [uuid];
+
+      return db.query(queryString, queryParams);
+    },
+
     findChoicesByPollId: (pollId) => {
       const queryString = `
         SELECT id, title, description FROM choices
