@@ -1,7 +1,7 @@
 --Seeding the choices table
 INSERT INTO choices
-  (poll_id, title) VALUES
-    (1, 'Red Lobster');
+  (poll_id, title, description) VALUES
+    (1, 'Red Lobster', 'Sea food and eat it!');
 INSERT INTO choices
   (poll_id, title) VALUES
     (1, 'McDonald''s');

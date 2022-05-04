@@ -24,15 +24,14 @@ $(document).ready(function () {
   });
 
   $("#pollForm").submit(function (e) {
+    console.log("button was clicked");
     e.preventDefault();
 
     const pollData = $(this).serialize();
 
-    $.post("/api/polls", pollData, function (newPoll) {
-
-      const preview = createPreviewPage(newPoll);
-
-      $('#pollForm').replaceWith(preview);
+    $.post("/api/polls", pollData, function(response) {
+      const path = response;
+      window.location.assign(path);
     });
   });
 });

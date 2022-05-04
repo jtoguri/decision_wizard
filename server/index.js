@@ -25,11 +25,13 @@ app.use(cookieParser());
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 
+const path = require("path");
+const baseDir = path.dirname(__dirname);
 app.use(
-  "../styles",
+  "/styles",
   sassMiddleware({
-    source: __dirname + "../styles",
-    destination: __dirname + "../public/styles",
+    source: baseDir + "/styles",
+    destination: baseDir + "/public/styles",
     isSass: false, // false => scss, true => sass
   })
 );
@@ -42,10 +44,12 @@ const usersRoutes = require("./routes/users");
 const pollsRoutes = require("./routes/polls");
 const widgetsRoutes = require("./routes/widgets");
 
+const queries = require("./lib/data-helpers.js")(db);
+
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
-app.use("/api/polls", pollsRoutes(db));
+app.use("/api/polls", pollsRoutes(queries));
 app.use("/api/widgets", widgetsRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
