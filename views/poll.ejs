@@ -62,9 +62,9 @@
       <div id = "dragAndDrop" class="d-flex justify-content-center my-4">
         <form class="form" id= "voteSubmit" action="/api/polls/:id" method="post">
           <ol id="sortable" class="ui-sortable list-group">
-            <% for (const choice of choices) { %>
-              <li id="choice_<%= choice.id %>" class="ui-sortable-handle list-group-item">
-                <%= choice.title %>
+            <% for (let i = 0; i < poll.choices.length; i++) { %>
+              <li id="choice_<%= poll.ids[i] %>" class="ui-sortable-handle list-group-item">
+                <%= poll.choices[i] %>
               </li>
               <% } %>
           </ol>
