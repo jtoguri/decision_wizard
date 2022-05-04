@@ -44,23 +44,11 @@ module.exports = (queries) => {
   router.get('/:id', (req, res) => {
     const externalPollId = req.params.id;
     
-    queries.findPollByUUID(externalPollId)
-    .then(data => data.rows[0])
-    .then(({ id, question }) => {
-      queries.findChoicesByPollId(id)
-      .then(data => {
-        const choices = data.rows;
-        const templateVars = {
-          poll: {
-            question
-          },
-          choices,
-          user: req.cookies.user_id
-        };
-        
-        res.render('poll', templateVars);
-      });
-    });
+    queries.getPollByUUID(externalPollId)
+    .then(data => {
+      const poll = data.rows[0];
+      res.render("poll", { poll, user: req.cookies.user_id});
+    })
   });
 
   router.get('/:id/admin', (req, res) => {
@@ -93,18 +81,9 @@ module.exports = (queries) => {
       });
     });
 /*
-    queryParams3 = [`${req.params.id}`];
-
-        res.json(data2.rows);
-      })
-      .then(() => {
-        return db.query(queryString3, queryParams3);
-      })
       .then(data3 => {
         sendMail(data3);
         //do things with mailgun
-      });
-
 */
   });
 
@@ -114,11 +93,6 @@ module.exports = (queries) => {
   return router;
 
 };
-
-
-
-
-
 // db.query(queryString, queryParams)
 // .then(data => console.log(data.rows))
 // .then(() => {
