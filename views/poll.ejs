@@ -20,12 +20,10 @@
     <link rel="stylesheet" href="/styles/wizard.css" type="text/css" />
 
     <!-- Link to fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Jost&family=Permanent+Marker&family=Raleway:wght@800&family=Voltaire&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bowlby+One&family=Jost&family=Permanent+Marker&family=Raleway:wght@800&display=swap" rel="stylesheet">
+
     <!-- Link to fontsawesome (icons) -->
     <script
       src="https://kit.fontawesome.com/ebefa7c07e.js"
@@ -49,16 +47,14 @@
 
     <h1>Poll Results</h1>
     <div>
-      <table class="roundedCorners">
-        <caption>* Results displayed are not final.</caption>
-        <caption>This poll ends on Sat May 7th.</caption>
+      <table id="resultsTable">
         <thead>
           <tr>
             <th scope="col"></td>
-            <th scope="col">SCORE</td>
+            <th id = "score" scope="col">SCORE</td>
           </tr>
         </thead>
-        <tr>
+        <tr class="optionInTheLead">
           <td>Hot Dog Stand</td>
           <td>37</td>
         </tr>
@@ -72,7 +68,8 @@
         </tr>
       </table>
 
-      Results displayed are not final This poll ends on Sat May 7th
+      <br><p><span class="highlightColor highlightBold">*</span> Results displayed are not final.<br>This poll ends on <span class="highlightColor highlightBold">Sat May 7th</span>.</p>
+
     </div>
     <div>
       Preview of Poll Poll question Drag and drop to rank the options (1st
@@ -133,43 +130,38 @@
 
     <!-- USER RANKS CHOICES -->
 
-    <div class="container d-flex flex-column align-items-center">
-      <h2 id="questionString"><%= poll.question %></h2>
+    <div id="preview">
+      <div id="previewLabel">
+        <p><span id="prevText">PREVIEW OF POLL</spa></p>
+      </div>
+      <div class="">
+        <h2 id="questionString"><%= poll.question %></h2>
 
-      <p id="instructions">
-        <i id="hand" class="fa-regular fa-hand"></i> Drag and drop to rank the
-        options <br />(<span id="firstChoice">1st</span> choice at the top, last
-        choice at the bottom)
-      </p>
+        <p id="instructions">
+          <i id="hand" class="fa-regular fa-hand"></i> Drag and drop to rank the
+          options <br />(<span id="firstChoice">1st</span> choice at the top, last
+          choice at the bottom)
+        </p>
 
-      <div id="dragAndDrop" class="d-flex justify-content-center my-4">
-        <form
-          class="form"
-          id="voteSubmit"
-          action="/api/polls/:id"
-          method="post"
-        >
-          <ol id="sortable" class="ui-sortable list-group">
-            <% for (const choice of choices) { %>
-            <li
-              id="choice_<%= choice.id %>"
-              class="ui-sortable-handle list-group-item"
-            >
-              <%= choice.title %>
-            </li>
-            <% } %>
-          </ol>
-
-          <div id="pollPreview" class="d-flex justify-content-center my-4">
-            <input
-              id="submitPoll"
-              type="submit"
-              class="btn btn-warning btn-lg"
-              type="submit"
-              value="Submit Poll"
-            />
-          </div>
-        </form>
+        <div id="dragAndDrop" class="d-flex justify-content-center my-4">
+          <form
+            class="form"
+            id="voteSubmit"
+            action="/api/polls/:id"
+            method="post"
+          >
+            <ol id="sortable" class="ui-sortable list-group">
+              <% for (const choice of choices) { %>
+              <li
+                id="choice_<%= choice.id %>"
+                class="ui-sortable-handle list-group-item"
+              >
+                <%= choice.title %>
+              </li>
+              <% } %>
+            </ol>
+          </form>
+        </div>
       </div>
     </div>
   </body>

@@ -196,4 +196,62 @@ table tr:last-child td:last-child {
 // ---
 tr > td:last-of-type {
   text-align: center;
+  font-family: "Alfa Slab One", cursive;
+  // font-weight: bold;
+}
+tr > td:first-of-type {
+  padding-left: 10px;
+}
+#score {
+  font-family: "Raleway", sans-serif;
+}
+body {
+  margin-top: 7em;
+}
+
+#resultsTable {
+  font-family: "Jost", sans-serif;
+}
+
+h1 {
+  font-family: "Raleway", sans-serif;
+}
+.optionInTheLead {
+  background-color: #ffc108;
+}
+.highlightColor {
+  color: #6a3190;
+}
+.highlightBold {
+  font-weight: bold;
+}
+#preview {
+  border: 3px dashed black;
+  padding: 4em;
+  border-radius: 1em;
+  margin-bottom: 6em;
+}
+
+#previewLabel {
+  // background-color: #ffc108;
+  // border: 2px solid black;
+  // border-radius: 0.5em;
+  // text-align: center;
+  font-family: "Raleway", sans-serif;
+  height: 40px;
+  width: 180px;
+  line-height: 33px;
+  text-align: center;
+  border: 2px solid black;
+  border-radius: 13px;
+  background-color: #ffc108;
+  position: relative;
+  top: -81px;
+  right: -357px;
+  transform: rotate(10deg);
+}
+#prevText {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
 }
