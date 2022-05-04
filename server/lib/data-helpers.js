@@ -100,8 +100,8 @@ module.exports = (db) => {
       let queryString = `
         SELECT choices.id, choices.title, choices.description,
           SUM(choice_count-position) AS score 
-            FROM votes
-          JOIN choices ON choices.id = votes.choice_id
+            FROM choices
+          JOIN votes ON choices.id = votes.choice_id
           JOIN polls ON polls.id = choices.poll_id
             WHERE choice_id IN (`;
     
@@ -129,7 +129,7 @@ module.exports = (db) => {
           as title, SUM(choice_count - position) as score 
             FROM choices
               JOIN polls ON polls.id = choices.poll_id
-              JOIN votes ON votes.choice_id = choices.id
+              LEFT JOIN votes ON votes.choice_id = choices.id
             WHERE polls.external_uuid = $1
           GROUP BY choices.id, polls.question;`;
       
