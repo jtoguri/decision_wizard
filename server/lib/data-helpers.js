@@ -120,6 +120,24 @@ module.exports = (db) => {
       
       return db.query(queryString, queryParams);
     },
+        //SELECT array_agg(choiceID) as ranking, array_agg(title) as
+        //titles, array_agg(sum) as scores FROM
+
+    getPollResultsByUUID: (uuid) => {
+      const queryString = `
+          SELECT polls.question, choices.id as choiceId, choices.title
+          as title, SUM(choice_count - position) as score 
+            FROM choices
+              JOIN polls ON polls.id = choices.poll_id
+              JOIN votes ON votes.choice_id = choices.id
+            WHERE polls.external_uuid = $1
+          GROUP BY choices.id, polls.question;`;
+      
+      const queryParams = [uuid];
+
+      return db.query(queryString, queryParams);
+
+    },
 
     getPollCreatorByUUID: (uuid) => {
       const queryString = `
