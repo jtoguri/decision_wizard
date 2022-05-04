@@ -43,7 +43,6 @@ const pollsRoutes = require("./routes/polls");
 const widgetsRoutes = require("./routes/widgets");
 
 const queries = require("./lib/data-helpers.js")(db);
-//console.log(queries.createNewPoll);
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
