@@ -19,6 +19,7 @@ module.exports = (queries) => {
   // Route to handle the creation of new polls
   router.post('/', (req, res) => {
 
+    // console.log(req.body)
     // Create and extract the necessary poll parameters to be added to
     // the database
     const externalPollId = generateExternalPollId();
@@ -28,6 +29,15 @@ module.exports = (queries) => {
     const choices = req.body.choices;
     const choiceCount = Object.keys(choices).length;
     const creatorId = Number(req.cookies.user_id);
+
+    const info = { question, externalPollId };
+
+//get creator email for mailgun
+    queries.getPollCreatorByUUID(externalPollId)
+    .then((result) => {
+      info.email = result.rows[0].email;
+      sendNewPollMail(info);
+    })
 
     queries.createNewPoll(externalPollId, question, creatorId,
       choiceCount, link)
@@ -81,22 +91,23 @@ module.exports = (queries) => {
         choiceIds.push(choice.choice_id);
       }
       return [ queries.getPollResults(choiceIds),
-        queries.getPollCreatorByUUID(uuid) ];
+        queries.getPollCreatorByUUID(uuid),
+        queries.getPollByUUID(uuid) ];
     })
     .then( promises => {
       Promise.all(promises).then(values => {
         const pollResults = values[0].rows;
         res.json(pollResults);
 
-        const creatorInfo = values[1].rows[0];
-        console.log(creatorInfo);
-      });
-    });
-/*
-      .then(data3 => {
-        sendNewResponseMail(data3);
-        //do things with mailgun
-*/
+//pass query data to mailgun
+        const info = {
+          email: values[1].rows[0].email,
+          uuid: values[1].rows[0].uuid,
+          question: values[2].rows[0].question
+        }
+        sendNewResponseMail(info);
+      })
+    })
   });
 
   router.post('/:id/delete', (req, res) => {

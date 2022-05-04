@@ -13,9 +13,9 @@ module.exports = {
     return uuidv4();
   },
   sendNewResponseMail: (info) => {
-    const email = info.rows[0].email;
-    const question = info.rows[0].question;
-    const url = `http://localhost:8080/api/polls/${info.rows[0].id}`;
+    const email = info.email;
+    const question = info.question;
+    const url = `http://localhost:8080/api/polls/${info.uuid}`;
 
     mg.messages.create('sandboxccb09bee7c9a4f58bdecfb63b9aa73ba.mailgun.org', {
       from: `Decision Wizard <fjord@decisionwizard.com>`,
@@ -30,21 +30,21 @@ module.exports = {
       .catch(err => console.log(err)); // logs any error
   },
   sendNewPollMail: (info) => {
-    // const email = info.rows[0].email;
-    // const question = info.rows[0].question;
-    // const url = `http://localhost:8080/api/polls/${info.rows[0].id}`;
+    const email = info.email;
+    const question = info.question;
+    const url = `http://localhost:8080/api/polls/${info.externalPollId}`;
 
-    // mg.messages.create('sandboxccb09bee7c9a4f58bdecfb63b9aa73ba.mailgun.org', {
-    //   from: `Decision Wizard <fjord@decisionwizard.com>`,
-    //   to: email,
-    //   subject: `${question} has a new response!`,
-    //   text: `${question} has a new response!`,
-    //   html: `
-    //   <h3>${question} has a new response!</h3><br>
-    //   Click <a href="${url}">here</a> to see the results.`
-    // // })
-    //   .then(msg => console.log(msg)) // logs response data
-    //   .catch(err => console.log(err)); // logs any error
+    mg.messages.create('sandboxccb09bee7c9a4f58bdecfb63b9aa73ba.mailgun.org', {
+      from: `Decision Wizard <fjord@decisionwizard.com>`,
+      to: email,
+      subject: `${question} has a new response!`,
+      text: `${question} has a new response!`,
+      html: `
+      <h3>${question} has a new response!</h3><br>
+      Click <a href="${url}">here</a> to see the results.`
+    })
+      .then(msg => console.log(msg)) // logs response data
+      .catch(err => console.log(err)); // logs any error
   }
 
 
