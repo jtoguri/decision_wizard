@@ -58,12 +58,65 @@ module.exports = (db) => {
       return db.query(queryString, queryParams);
     },
 
-    submitVotes: (rankedChoices) => {
+    submitVotes: (rankedChoices, userId) => {
       let queryString = `
         INSERT INTO votes
           (choice_id, user_id, position) VALUES
             `;
       const queryParams = [];
+      
+      for (let i = 0; i < rankedChoices.length; i++) {
+        const choiceId = Number(rankedChoices[i]);
+        const position = i + 1;
 
+        queryParams.push(choiceId, userId, position);
+        const count = queryParams.length;
+        queryString += `($${count - 2}, $${count - 1}, $${count})`;
+
+        if (i < rankedChoices.length - 1) {
+          queryString += ', ';
+        }
+      }
+
+      queryString += `\n  RETURNING choice_id;`;
+      
+      return db.query(queryString, queryParams);
+    },
+    
+    getPollResults: (choices) => {
+      let queryString = `
+        SELECT choices.id, choices.title, choices.description,
+          SUM(choice_count-position) AS score 
+            FROM votes
+          JOIN choices ON choices.id = votes.choice_id
+          JOIN polls ON polls.id = choices.poll_id
+            WHERE choice_id IN (`;
+    
+      const queryParams = [];
+
+      for (let i = 0; i < choices.length; i++) {
+        queryParams.push(choices[i]);
+        const count = queryParams.length;
+        queryString += `$${count}`;
+        if (i < choices.length - 1) {
+          queryString += ', ';
+        }
+      }
+
+      queryString += ') GROUP BY choices.id ORDER BY score DESC;';
+      
+      return db.query(queryString, queryParams);
+    },
+
+    getPollCreatorByUUID: (uuid) => {
+      const queryString = `
+        SELECT users.name, users.email, polls.external_uuid as uuid
+          FROM polls
+          JOIN users on users.id = polls.creator_id
+            WHERE polls.external_uuid = $1;`
+      const queryParams = [uuid];
+
+      return db.query(queryString, queryParams);
+    }
   };
 };
