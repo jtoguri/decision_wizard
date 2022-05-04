@@ -42,9 +42,9 @@ module.exports = (queries) => {
   });
 
   router.get('/:id', (req, res) => {
-    const externalPollId = req.params.id;
+    const uuid = req.params.id;
     
-    queries.getPollByUUID(externalPollId)
+    queries.getPollByUUID(uuid)
     .then(data => {
       const poll = data.rows[0];
       res.render("poll", { poll, user: req.cookies.user_id});
@@ -52,7 +52,19 @@ module.exports = (queries) => {
   });
 
   router.get('/:id/admin', (req, res) => {
-    res.send('display admin page for existing poll');
+    const uuid = req.params.id; 
+    console.log(uuid);
+    queries.getPollResultsByUUID(uuid)
+    .then(data => {
+      const results = data.rows;
+      console.log(results);
+      const templateVars = {
+        question: results[0].question,
+        results,
+        user: req.cookies.user_id
+      };
+      res.render("admin", templateVars);
+    });
   });
 
   router.post('/:id', (req, res) => {
