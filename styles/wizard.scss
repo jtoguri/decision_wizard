@@ -157,6 +157,7 @@ table {
   border-collapse: separate;
   border-spacing: 0;
   min-width: 350px;
+  background-color: white;
 }
 table tr th,
 table tr td {
@@ -230,6 +231,9 @@ h1 {
   padding: 4em;
   border-radius: 1em;
   margin-bottom: 6em;
+  align-self: flex-start;
+  // margin-left: 5em;
+  // margin-right: 5em;
 }
 
 #previewLabel {
@@ -254,4 +258,34 @@ h1 {
   display: inline-block;
   vertical-align: middle;
   line-height: normal;
+}
+#sharePoll {
+  font-family: "Raleway", sans-serif;
+}
+.shareLink {
+  font-family: "Jost", sans-serif;
+  background-color: #6a3190;
+  color: white;
+  border: 3px solid black;
+  border-radius: 1.25em;
+  padding: 1em;
+}
+#shareIcon {
+  font-size: xx-large;
+  position: relative;
+  right: 54px;
+  bottom: 60px;
+}
+#flex1 {
+  margin-top: 11em;
+  flex-direction: row;
+  gap: 5em;
+}
+#pollResults {
+  // margin-right: 5em;
+  // margin-left: 5em;
+  margin-bottom: 3em;
+}
+#vertical {
+  flex-direction: column;
 }

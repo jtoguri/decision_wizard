@@ -41,95 +41,52 @@
     <script type="text/javascript" src="/scripts/vote-submission.js"></script>
   </head>
 
-  <body>
+  <body id="flex1">
     <%- include('partials/_header') %>
     <br />
 
-    <h1>Poll Results</h1>
-    <div>
-      <table id="resultsTable">
-        <thead>
-          <tr>
-            <th scope="col"></td>
-            <th id = "score" scope="col">SCORE</td>
+    <div id="vertical">
+      <!-- POLL RESULTS -->
+      <div id="pollResults">
+        <h1>Poll Results</h1>
+        <table id="resultsTable">
+          <thead>
+            <tr>
+              <th scope="col"></td>
+              <th id = "score" scope="col">SCORE</td>
+            </tr>
+          </thead>
+          <tr class="optionInTheLead">
+            <td>Hot Dog Stand</td>
+            <td>37</td>
           </tr>
-        </thead>
-        <tr class="optionInTheLead">
-          <td>Hot Dog Stand</td>
-          <td>37</td>
-        </tr>
-        <tr>
-          <td>Red Lobster</td>
-          <td>23</td>
-        </tr>
-        <tr>
-          <td>McDonald's</td>
-          <td>3</td>
-        </tr>
-      </table>
+          <tr>
+            <td>Red Lobster</td>
+            <td>23</td>
+          </tr>
+          <tr>
+            <td>McDonald's</td>
+            <td>3</td>
+          </tr>
+        </table>
 
-      <br><p><span class="highlightColor highlightBold">*</span> Results displayed are not final.<br>This poll ends on <span class="highlightColor highlightBold">Sat May 7th</span>.</p>
+        <br><p><span class="highlightColor highlightBold">*</span> Results displayed are not final.<br>This poll ends on <span class="highlightColor highlightBold">Sat May 7th</span>.</p>
+      </div>
 
-    </div>
-    <div>
-      Preview of Poll Poll question Drag and drop to rank the options (1st
-      choice at the top, last choice at the bottom) Red Lobster McDonald's Hot
-      Dog Stand
-    </div>
-    <div>Share This Poll: Link</div>
-    <div>Delete Poll</div>
+      <!-- SHARE POLL LINK -->
+      <div id="sharePoll">
+        <h3>Share This Poll:</h3>
 
-    <div class="form">
-      <ol>
-        <% for (const choice of choices) { %>
-        <li
-          id="choice_<%= choice.id %>"
-          class="ui-sortable-handle list-group-item"
-        >
-          <%= choice.title %>
-        </li>
-        <% } %>
-      </ol>
+        <div>
+          <p class="shareLink">localhost:8080/api/polls/${externalPollId}/admin<p/>
+          <i id="shareIcon" class="fa-solid fa-link"></i>
+          </div>
+      </div>
     </div>
 
-    <div class="table-responsive">
-      <table class="table">
-        <caption>
-          List of users
-        </caption>
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
 
-    <!-- USER RANKS CHOICES -->
 
+    <!-- PREVIEW OF POLE -->
     <div id="preview">
       <div id="previewLabel">
         <p><span id="prevText">PREVIEW OF POLL</spa></p>
@@ -164,6 +121,7 @@
         </div>
       </div>
     </div>
+
   </body>
 </html>
 
