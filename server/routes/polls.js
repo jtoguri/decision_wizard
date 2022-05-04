@@ -38,7 +38,7 @@ module.exports = (queries) => {
     .then(({ id }) => {
       return queries.createNewChoices(choices, id);
     })
-    .then(data => res.redirect(redirectLink));
+    .then(data => res.send(redirectLink));
   });
 
   router.get('/:id', (req, res) => {
@@ -53,7 +53,7 @@ module.exports = (queries) => {
 
   router.get('/:id/admin', (req, res) => {
     const uuid = req.params.id; 
-    console.log(uuid);
+
     queries.getPollResultsByUUID(uuid)
     .then(data => {
       const results = data.rows;
