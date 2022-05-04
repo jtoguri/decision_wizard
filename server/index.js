@@ -25,11 +25,13 @@ app.use(cookieParser());
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 
+const path = require("path");
+const baseDir = path.dirname(__dirname);
 app.use(
-  "../styles",
+  "/styles",
   sassMiddleware({
-    source: __dirname + "../styles",
-    destination: __dirname + "../public/styles",
+    source: baseDir + "/styles",
+    destination: baseDir + "/public/styles",
     isSass: false, // false => scss, true => sass
   })
 );
