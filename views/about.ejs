@@ -1,49 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>🧙 Decision Wizard</title>
 
-<head>
-  <title>🧙 About</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3    "
+      crossorigin="anonymous"
+    />
 
-  <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
-  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/header.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/wizard.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/header.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/wizard.css" type="text/css" />
 
-  <!-- Link to fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bowlby+One&family=Jost&family=Permanent+Marker&family=Raleway:wght@800&display=swap"
-    rel="stylesheet">
+    <!-- Link to fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bowlby+One&family=Jost:wght@400;800&family=Permanent+Marker&family=Raleway:wght@800&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- Link to fontsawesome (icons) -->
-  <script src="https://kit.fontawesome.com/ebefa7c07e.js" crossorigin="anonymous"></script>
+    <!-- Link to fontsawesome (icons) -->
+    <script
+      src="https://kit.fontawesome.com/ebefa7c07e.js"
+      crossorigin="anonymous"
+    ></script>
 
-  <!-- <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/smoothness/jquery-ui.css" type="text/css" /> -->
-  <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/app.js"></script>
+  </head>
 
-  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-  <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-  <script type="text/javascript" src="/scripts/vote-submission.js"></script>
-</head>
+  <body id="myPolls">
+    <%- include('partials/_header') %>
 
-<body>
-  <%- include('partials/_header') %>
+    <div class="containerAll">
+      <h1>Eeny, Meeny, Miny, Moe</h1>
+      <p>Decision Maker is an app blah blah blah</p>
+      <a href="https://github.com/jtoguri/decision_wizard"
+        ><i class="fa-solid fa-link"></i> GitHub Repo</a
+      >
 
+      <p>Joshua Toguri</p>
+      <img class="profilePic" src="/josh.png" />
+      <div class="socialIcons">
+        <i class="fa-brands fa-github"></i>
+        <i class="fa-brands fa-linkedin"></i>
+        <i class="fa-brands fa-instagram"></i>
+      </div>
+      <p>Serra Stratton</p>
+      <img class="profilePic" src="/serra.png" />
+      <div class="socialIcons">
+        <i class="fa-brands fa-github"></i>
+        <i class="fa-brands fa-linkedin"></i>
+        <i class="fa-brands fa-instagram"></i>
+      </div>
 
-
-    <div class="d-flex">
-
-      <h1>all about decision wizard</h1>
-
+      <p>Jeff Bush</p>
+      <img class="profilePic" src="/jeff.png" />
+      <div class="socialIcons">
+        <i class="fa-brands fa-github"></i>
+        <i class="fa-brands fa-linkedin"></i>
+        <i class="fa-brands fa-instagram"></i>
+      </div>
     </div>
-
-
-</body>
-
+  </body>
 </html>
