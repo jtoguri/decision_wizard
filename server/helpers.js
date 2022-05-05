@@ -24,7 +24,8 @@ module.exports = {
       text: `${question} has a new response!`,
       html: `
       <h3>${question} has a new response!</h3><br>
-      Click <a href="${url}">here</a> to see the results.`
+      Click <a href="${url}">here</a> to see the results.<br>
+      &copy; Decision Wizard 2022 🧙`
     })
       .then(msg => console.log(msg)) // logs response data
       .catch(err => console.log(err)); // logs any error
@@ -32,38 +33,23 @@ module.exports = {
   sendNewPollMail: (info) => {
     const email = info.email;
     const question = info.question;
+    const name = info.name;
     const url = `http://localhost:8080/api/polls/${info.externalPollId}`;
 
     mg.messages.create('sandboxccb09bee7c9a4f58bdecfb63b9aa73ba.mailgun.org', {
       from: `Decision Wizard <fjord@decisionwizard.com>`,
       to: email,
-      subject: `${question} has a new response!`,
-      text: `${question} has a new response!`,
+      subject: `You created a new poll: ${question}?`,
+      text: `You created a new poll: ${question}?`,
       html: `
-      <h3>${question} has a new response!</h3><br>
-      Click <a href="${url}">here</a> to see the results.`
+      <p>Hello, ${name}!<br>
+      <h1>${question}?</h1><br>
+
+      Click <a href="${url}">here</a> to make changes, or see the results.<br>
+      &copy; Decision Wizard 2022 🧙`
     })
       .then(msg => console.log(msg)) // logs response data
       .catch(err => console.log(err)); // logs any error
   }
-
-
-
-
-
 };
 
-
-
-//sendMail => sendNewPollMail, sendNewResponseMail
-
-// responsedata = {
-//   question: 'What should I be when I grow up?',
-//   choices: [
-//     { title: 'Accountant', description: null },
-//     { title: 'Doctor', description: null },
-//     { title: 'Wizard', description: null }
-//   ],
-//   submissionLink: 'api/polls/55e71f26-93c6-4268-91e7-6513641f56c5',
-//   adminLink: 'api/polls/55e71f26-93c6-4268-91e7-6513641f56c5/admin'
-// }
