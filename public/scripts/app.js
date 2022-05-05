@@ -7,7 +7,7 @@ $(document).ready(function () {
     // e.preventDefault();
 
     // Count all divs with .option class, use to increment input name with adding new options
-    const numberOfOptions = document.querySelectorAll('.option').length;
+    const numberOfOptions = $('#optionsContainer').children().length; 
 
     const newOption = `
     <div class="input-group">
