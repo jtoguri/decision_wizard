@@ -83,7 +83,7 @@
             <i id="shareIcon" class="fa-solid fa-link"></i>
           </button>
           <% const subLink = `localhost:8080/${poll.submission_link}` %>
-          <a href="<%= subLink %>" class="shareLink"><%= subLink %></a>
+          <a target="_blank" href="http://<%= subLink %>" class="shareLink"><%= subLink %></a>
         </div>
       </div>
     </div>
