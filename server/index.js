@@ -59,9 +59,13 @@ app.use("/api/widgets", widgetsRoutes(db));
 
 app.get("/", (req, res) => {
   const userId = req.cookies.user_id;
-  
   res.render("index", {user: userId});
 });
+
+app.get("/about", (req, res) => {
+  const userId = req.cookies.user_id;
+  res.render('about.ejs', {user: userId});
+})
 
 app.listen(PORT, () => {
   console.log(`🧙 decision wizard listening on port ${PORT} ...`);
