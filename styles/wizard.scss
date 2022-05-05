@@ -203,7 +203,7 @@ tr > td:last-of-type {
 tr > td:first-of-type {
   padding-left: 10px;
 }
-#score {
+.tableHeading {
   font-family: "Raleway", sans-serif;
 }
 // body {
@@ -212,6 +212,12 @@ tr > td:first-of-type {
 
 #resultsTable {
   font-family: "Jost", sans-serif;
+}
+
+#resultsTable caption {
+  caption-side: top;
+  font-size: 1.5rem;
+  color: black;
 }
 
 h1 {

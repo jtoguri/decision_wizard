@@ -48,22 +48,23 @@
       <div id="pollResults">
         <h1 id="pollh1">Poll Results</h1>
         <table id="resultsTable">
+          <caption><%= poll.question %></caption>
           <thead>
             <tr>
-              <th scope="col"></td>
-              <th id = "score" scope="col">SCORE</td>
+              <th class="tableHeading" scope="col">Choices</th>
+              <th class="tableHeading" scope="col">SCORE</th>
             </tr>
           </thead>
-          <% for (const choice of results) { %>
-            <tr>
-              <td><%= choice.title %>
-              <td><%= choice.score %>
-            <tr>
+          <% for (let i = 0; i < results.length; i++) { %>
+            <% if (i === 0) { %>
+              <tr class="optionInTheLead">
+            <% } else { %>
+              <tr>
+            <% } %>
+              <td><%= results[i].title %>
+              <td><%= results[i].score %>
+              </tr>
           <% } %>
-          <tr class="optionInTheLead">
-            <td>Hot Dog Stand</td>
-            <td>37</td>
-          </tr>
         </table>
 
         <br><p><span class="highlightColor highlightBold">*</span> Results displayed are not final.<br>This poll ends on <span class="highlightColor highlightBold">Sat May 7th</span>.</p>
@@ -74,7 +75,7 @@
         <h3>Share This Poll:</h3>
 
         <div>
-          <p class="shareLink">localhost:8080/api/polls/${externalPollId}/admin<p/>
+          <p class="shareLink">localhost:8080/<%= poll.submission_link %><p/>
           <i id="shareIcon" class="fa-solid fa-link"></i>
           </div>
       </div>
@@ -88,7 +89,7 @@
         <p><span id="prevText">PREVIEW OF POLL</spa></p>
       </div>
       <div class="">
-        <h2 id="questionString"><%= question %></h2>
+        <h2 id="questionString"><%= poll.question %></h2>
 
         <p id="instructions">
           <i id="hand" class="fa-regular fa-hand"></i> Drag and drop to rank the
