@@ -131,7 +131,8 @@ module.exports = (db) => {
               JOIN polls ON polls.id = choices.poll_id
               LEFT JOIN votes ON votes.choice_id = choices.id
             WHERE polls.external_uuid = $1
-          GROUP BY choices.id, polls.question;`;
+          GROUP BY choices.id, polls.question
+          Order By score DESC;`;
 
       const queryParams = [uuid];
 
