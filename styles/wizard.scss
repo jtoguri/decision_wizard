@@ -206,9 +206,9 @@ tr > td:first-of-type {
 #score {
   font-family: "Raleway", sans-serif;
 }
-body {
-  margin-top: 7em;
-}
+// body {
+//   margin-top: 7em;
+// }
 
 #resultsTable {
   font-family: "Jost", sans-serif;
@@ -267,7 +267,7 @@ h1 {
   background-color: #6a3190;
   color: white;
   border: 3px solid black;
-  border-radius: 1.25em;
+  border-radius: 0.5em;
   padding: 1em;
 }
 #shareIcon {
@@ -280,6 +280,7 @@ h1 {
   margin-top: 11em;
   flex-direction: row;
   gap: 5em;
+  align-items: flex-start;
 }
 #pollResults {
   // margin-right: 5em;
@@ -288,4 +289,10 @@ h1 {
 }
 #vertical {
   flex-direction: column;
+}
+#pollh1 {
+  margin-top: 0;
+}
+#myPolls h1 {
+  font-family: "Raleway", sans-serif;
 }
