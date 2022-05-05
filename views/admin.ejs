@@ -37,6 +37,7 @@
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <script type="text/javascript" src="/scripts/vote-submission.js"></script>
+    <script type="text/javascript" src="/scripts/clipboard.js"></script>
   </head>
 
   <body id="flex1">
@@ -78,7 +79,9 @@
         <h3>Share This Poll:</h3>
 
         <div id="linkContainer">
-          <i id="shareIcon" class="fa-solid fa-link"></i>
+          <button type="button" id="copyButton">
+            <i id="shareIcon" class="fa-solid fa-link"></i>
+          </button>
           <% const subLink = `localhost:8080/${poll.submission_link}` %>
           <a href="<%= subLink %>" class="shareLink"><%= subLink %></a>
         </div>
