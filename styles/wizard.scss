@@ -300,8 +300,9 @@ h1 {
 }
 #myPolls {
   justify-content: flex-start;
-  align-items: center;
-  margin-top: 11em;
+  display: flex;
+  // align-items: center;
+  margin-top: 9em;
 }
 // <div class="activePoll">
 //       <h4 class="pollTitle"
@@ -377,4 +378,15 @@ h1 {
 .pollContainer {
   display: flex;
   gap: 2em;
+  margin-bottom: 3em;
+}
+#usersPolls {
+}
+.paddingAdjust {
+  padding-left: 5em;
+  padding-right: 5em;
+}
+.containerAll {
+  max-width: 1320px;
+  justify-content: center;
 }

@@ -32,71 +32,61 @@
   <body id="myPolls">
     <%- include('partials/_header') %>
 
-    <h1><%= user %>'s Polls</h1>
+    <div class="containerAll">
+      <h1 id="usersPolls"><%= user %>'s Polls</h1>
 
-    <!-- ACTIVE POLLS -->
-    <h3 class="pollsActivePast">Active Polls</h3>
-    <div class="pollContainer">
-      <% for (const poll of activePolls) { %>
-      <div class="poll">
-        <div class="topPortion activePoll">
-          <h4><%= poll.question %></h4>
-        </div>
-        <div class="bottomPortion">
-          <% const created = poll.created_at.toDateString() %> <% const
-          createdDate = created.split(' ').slice(0, 3).join(' ') %>
-          <p class="smallText">Created on:</p>
-          <div class="centerHorizontally">
-            <p class="date"><%= createdDate %></p>
-            <p class="link">
-              <a
-                href="http://localhost:8080/<%= poll.admin_link %>"
-                class="link"
-                >View Poll</a
-              >
-            </p>
+      <!-- ACTIVE POLLS -->
+      <h3 class="pollsActivePast">Active Polls</h3>
+      <div class="pollContainer">
+        <% for (const poll of activePolls) { %>
+        <div class="poll">
+          <div class="topPortion activePoll">
+            <h4><%= poll.question %></h4>
+          </div>
+          <div class="bottomPortion">
+            <% const created = poll.created_at.toDateString() %> <% const
+            createdDate = created.split(' ').slice(0, 3).join(' ') %>
+            <p class="smallText">Created on:</p>
+            <div class="centerHorizontally">
+              <p class="date"><%= createdDate %></p>
+              <p class="link">
+                <a
+                  href="http://localhost:8080/<%= poll.admin_link %>"
+                  class="link"
+                  >View Poll</a
+                >
+              </p>
+            </div>
           </div>
         </div>
+        <% } %>
       </div>
-      <% } %>
-    </div>
 
-    <!-- PAST POLLS -->
+      <!-- PAST POLLS -->
 
-    <h3 class="pollsActivePast">Past Polls</h3>
-    <div class="pollContainer">
-      <% for (const poll of activePolls) { %>
-      <div class="poll">
-        <div class="topPortion pastPoll">
-          <h4><%= poll.question %></h4>
-        </div>
-        <div class="bottomPortion">
-          <% const created = poll.created_at.toDateString() %> <% const
-          createdDate = created.split(' ').slice(0, 3).join(' ') %>
-          <span class="smallText">Created on:</span>
-          <div class="centerHorizontally">
-            <p class="date"><%= createdDate %></p>
-            <p class="link">
-              <a href="http://localhost:8080/<%= poll.admin_link %>"
-                >View Poll</a
-              >
-            </p>
+      <h3 class="pollsActivePast">Past Polls</h3>
+      <div class="pollContainer">
+        <% for (const poll of activePolls) { %>
+        <div class="poll">
+          <div class="topPortion pastPoll">
+            <h4><%= poll.question %></h4>
+          </div>
+          <div class="bottomPortion">
+            <% const created = poll.created_at.toDateString() %> <% const
+            createdDate = created.split(' ').slice(0, 3).join(' ') %>
+            <span class="smallText">Created on:</span>
+            <div class="centerHorizontally">
+              <p class="date"><%= createdDate %></p>
+              <p class="link">
+                <a href="http://localhost:8080/<%= poll.admin_link %>"
+                  >View Poll</a
+                >
+              </p>
+            </div>
           </div>
         </div>
+        <% } %>
       </div>
-      <% } %>
-    </div>
-
-    <div class="pollContainer">
-      <h3>Past Polls</h3>
-      <% for (const poll of completedPolls) { %>
-      <h4><%= poll.question %></h4>
-      <p>Winner: Y</p>
-      <% const closed = poll.closed_at.toDateString() %> <% const closedDate =
-      closed.split(' ').slice(0, 3).join(' ') %>
-      <span>Closed on: <%= closedDate %></span>
-      <a href="http://localhost:8080/<%= poll.admin_link %>">View Poll</a>
-      <% } %>
     </div>
   </body>
 </html>
