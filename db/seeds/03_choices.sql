@@ -32,3 +32,22 @@ INSERT INTO choices
 INSERT INTO choices
   (poll_id, title) VALUES
     (3, 'Grizzly Bear');
+
+INSERT INTO choices
+  (poll_id, title) VALUES
+    (4, 'Cybertruck');
+INSERT INTO choices
+  (poll_id, title) VALUES
+    (4, 'Areostar');
+INSERT INTO choices
+  (poll_id, title) VALUES
+    (4, 'Bike');
+INSERT INTO choices
+  (poll_id, title) VALUES
+    (4, 'Grand Caravan');
+INSERT INTO choices
+  (poll_id, title) VALUES
+    (4, 'Delica');
+INSERT INTO choices
+  (poll_id, title) VALUES
+    (4, 'Windstar');
