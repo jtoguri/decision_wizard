@@ -4,12 +4,11 @@
 
 - As a user, I want to be able close my poll when it is complete
 
-- As a creator, I can set my poll to expire at a certain data / time
+✅  As a creator, I can set my poll to expire at a certain data / time
 
-- As a creator, I can be notified when a new response is submitted
+✅  As a creator, I can be notified when a new response is submitted
 
-- As a creator, I can see a list of all polls I have created 
-
+✅  As a creator, I can see a list of all polls I have created 
 
 ✅ As a creator, I can add descriptions to the options on my polls 
 
