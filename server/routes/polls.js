@@ -44,6 +44,7 @@ module.exports = (queries) => {
       .then(morePromises => {
         Promise.all(morePromises).then(values => {
           mailInfo.email = values[1].rows[0].email;
+          mailInfo.name = values[1].rows[0].name;
           sendNewPollMail(mailInfo);
         });
       })
