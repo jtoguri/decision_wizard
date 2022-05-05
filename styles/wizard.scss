@@ -203,7 +203,7 @@ tr > td:last-of-type {
 tr > td:first-of-type {
   padding-left: 10px;
 }
-#score {
+.tableHeading {
   font-family: "Raleway", sans-serif;
 }
 // body {
@@ -212,6 +212,12 @@ tr > td:first-of-type {
 
 #resultsTable {
   font-family: "Jost", sans-serif;
+}
+
+#resultsTable caption {
+  caption-side: top;
+  font-size: 1.5rem;
+  color: black;
 }
 
 h1 {
@@ -261,6 +267,15 @@ h1 {
 }
 #sharePoll {
   font-family: "Raleway", sans-serif;
+  display: flex;
+  flex-direction: column; 
+  gap: 1em;
+}
+#linkContainer {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5em;
 }
 .shareLink {
   font-family: "Jost", sans-serif;
@@ -273,8 +288,8 @@ h1 {
 #shareIcon {
   font-size: xx-large;
   position: relative;
-  right: 54px;
-  bottom: 60px;
+  /*right: 54px;
+  bottom: 60px;*/
 }
 #flex1 {
   margin-top: 11em;

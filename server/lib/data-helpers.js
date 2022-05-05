@@ -42,7 +42,7 @@ module.exports = (db) => {
 
     findPollByUUID: (uuid) => {
       const queryString = `
-        SELECT id, question FROM polls
+        SELECT * FROM polls
           WHERE external_uuid = $1;`;
       const queryParams = [uuid];
 
@@ -125,7 +125,7 @@ module.exports = (db) => {
 
     getPollResultsByUUID: (uuid) => {
       const queryString = `
-          SELECT polls.question, choices.id as choiceId, choices.title
+          SELECT choices.id as choiceId, choices.title
           as title, SUM(choice_count - position) as score
             FROM choices
               JOIN polls ON polls.id = choices.poll_id
