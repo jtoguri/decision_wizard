@@ -1,24 +1,18 @@
 <header>
 
-  <nav id = "navMain" class="navbar navbar-expand-lg navbar-light">
+  <nav id="navMain" class="navbar navbar-expand-lg navbar-light">
     <div class="container-xxl">
-      <!-- <a class="navbar-brand" href="#"> -->
+      <img id="logo" src="/logo-decision-wizard-02.png" />
 
-
-        <!-- <img id="logo" src="https://github.com/jtoguri/decision_wizard/blob/master/views/partials/logo-decision-wizard-01.png?raw=true" /> -->
-        <img id="logo" src="/logo-decision-wizard-02.png" />
-        <!-- <img src="/logo.jpg" /> -->
-
-      <!-- </a> -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
         aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link" href="#">New Poll</a>
+          <a class="nav-link" href="/api/polls">New Poll</a>
           <a class="nav-link" href="/api/users/<%= user %>">My Polls</a>
-          <a class="nav-link" href="#">About</a>
+          <a class="nav-link" href="/about">About</a>
         </div>
       </div>
     </div>
