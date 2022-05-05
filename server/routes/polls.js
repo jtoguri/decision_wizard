@@ -28,9 +28,10 @@ module.exports = (queries) => {
     const choiceCount = Object.keys(choices).length;
     const creatorId = Number(req.cookies.user_id);
     const mailInfo = {question, externalPollId };
+    const endDate = (req.body.end_date) ? req.body.end_date : null;
 
     queries.createNewPoll(externalPollId, question, creatorId,
-      choiceCount, link)
+      choiceCount, endDate, link)
       .then(data => {
         pollData = data.rows[0];
         return pollData;

@@ -1,18 +1,18 @@
 
 module.exports = (db) => {
   return {
-    createNewPoll: (uuid, question, creatorId, choiceCount, link) => {
+    createNewPoll: (uuid, question, creatorId, choiceCount, endDate, link) => {
       const queryString = `
         INSERT INTO polls
-          (external_uuid, question, creator_id, choice_count, admin_link,
+          (external_uuid, question, creator_id, choice_count, end_date, admin_link,
             submission_link)
           VALUES
-            ($1, $2, $3, $4, $5, $6)
-        RETURNING *;`; 
-    
+            ($1, $2, $3, $4, $5, $6, $7)
+        RETURNING *;`;
+
       const adminLink = link + '/admin';
 
-      const queryParams = [uuid, question, creatorId, choiceCount,
+      const queryParams = [uuid, question, creatorId, choiceCount, endDate,
         adminLink, link];
 
       return db.query(queryString, queryParams);
@@ -67,7 +67,7 @@ module.exports = (db) => {
         SELECT id, title, description FROM choices
           WHERE poll_id = $1;`;
       const queryParams = [pollId];
-      
+
       return db.query(queryString, queryParams);
     },
 
@@ -77,7 +77,7 @@ module.exports = (db) => {
           (choice_id, user_id, position) VALUES
             `;
       const queryParams = [];
-      
+
       for (let i = 0; i < rankedChoices.length; i++) {
         const choiceId = Number(rankedChoices[i]);
         const position = i + 1;
@@ -92,19 +92,19 @@ module.exports = (db) => {
       }
 
       queryString += `\n  RETURNING choice_id;`;
-      
+
       return db.query(queryString, queryParams);
     },
-    
+
     getPollResults: (choices) => {
       let queryString = `
         SELECT choices.id, choices.title, choices.description,
-          SUM(choice_count-position) AS score 
+          SUM(choice_count-position) AS score
             FROM choices
           JOIN votes ON choices.id = votes.choice_id
           JOIN polls ON polls.id = choices.poll_id
             WHERE choice_id IN (`;
-    
+
       const queryParams = [];
 
       for (let i = 0; i < choices.length; i++) {
@@ -117,7 +117,7 @@ module.exports = (db) => {
       }
 
       queryString += ') GROUP BY choices.id ORDER BY score DESC;';
-      
+
       return db.query(queryString, queryParams);
     },
         //SELECT array_agg(choiceID) as ranking, array_agg(title) as
@@ -126,13 +126,13 @@ module.exports = (db) => {
     getPollResultsByUUID: (uuid) => {
       const queryString = `
           SELECT polls.question, choices.id as choiceId, choices.title
-          as title, SUM(choice_count - position) as score 
+          as title, SUM(choice_count - position) as score
             FROM choices
               JOIN polls ON polls.id = choices.poll_id
               LEFT JOIN votes ON votes.choice_id = choices.id
             WHERE polls.external_uuid = $1
           GROUP BY choices.id, polls.question;`;
-      
+
       const queryParams = [uuid];
 
       return db.query(queryString, queryParams);
