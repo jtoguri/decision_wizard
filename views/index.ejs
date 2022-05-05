@@ -36,32 +36,78 @@
         <input class="form-control" type="text" name="pollQuestion" placeholder="Where should we eat tonight?"
           required />
       </div>
-
+        
+      <div class="mt-5">
+        <h5 id="addOptions">Now, add some options...</h5>
+      </div>
+      
       <div id="optionsContainer">
-        <div class="mt-5">
-          <h5 id="addOptions">Now, add some options...</h5>
-        </div>
-
-        <!-- OPTION 1 -->
-        <div class="input-group option">
-          <input class="form-control noRightBorder" type="text" name="choices[choice1][title]"
-            placeholder="The hot dog stand" required />
-          <input class="form-control noRightBorder" type="text" name="choices[choice1][describe]"
-            placeholder="it's good and cheap" /><br />
-          <button class="btn btn-outline-secondary btn-sm removeOption" type="button">
+        
+        <div class="input-group">
+          <input
+            class="form-control noRightBorder"
+            type="text"
+            name="choices[choice1][title]"
+            placeholder="The hot dog stand"
+            required
+          />
+          <input
+            class="form-control noRightBorder"
+            type="text"
+            name="choices[choice1][describe]"
+            placeholder="it's good and cheap"
+          /><br />
+          <button
+            class="btn btn-outline-secondary btn-sm removeOption"
+            type="button"
+          >
             x
           </button>
           <br />
         </div>
 
-        <!-- OPTION 2 -->
         <div class="input-group">
-          <input class="form-control noRightBorder" type="text" name="choices[choice2][title]" placeholder="Red Lobster"
-            required />
-          <input class="form-control noRightBorder" type="text" name="choices[choice2][describe]"
-            placeholder="Close to the office" /><br />
-          <button class="btn btn-outline-secondary btn-sm removeOption" type="button">
-            x</button><br />
+          <input
+            class="form-control noRightBorder"
+            type="text"
+            name="choices[choice2][title]"
+            placeholder="Red Lobster"
+            required
+          />
+          <input
+            class="form-control noRightBorder"
+            type="text"
+            name="choices[choice2][describe]"
+            placeholder="Close to the office"
+          /><br />
+          <button
+            class="btn btn-outline-secondary btn-sm removeOption"
+            type="button"
+          >
+            x</button
+          ><br />
+        </div>
+
+        <div class="input-group">
+          <input
+            class="form-control noRightBorder"
+            type="text"
+            name="choices[choice3][title]"
+            placeholder="Old McDonalds"
+            required
+          />
+          <input
+            class="form-control noRightBorder"
+            type="text"
+            name="choices[choice3][describe]"
+            placeholder="Tiny cheeseburgers"
+          />
+          <button
+            class="btn btn-outline-secondary btn-sm removeOption"
+            type="button"
+          >
+            x
+          </button>
         </div>
       </div>
 
