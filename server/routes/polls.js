@@ -62,18 +62,18 @@ module.exports = (queries) => {
 
   router.get('/:id/admin', (req, res) => {
     const uuid = req.params.id;
+    const promises = [];
+    const user = req.cookies.user_id;
 
-    queries.getPollResultsByUUID(uuid)
-      .then(data => {
-        const results = data.rows;
-        // console.log(results);
-        const templateVars = {
-          question: results[0].question,
-          results,
-          user: req.cookies.user_id
-        };
-        res.render("admin", templateVars);
-      });
+    promises.push(queries.findPollByUUID(uuid),
+      queries.getPollResultsByUUID(uuid));
+
+    Promise.all(promises).then(values => {
+      const poll = values[0].rows[0];
+      const results = values[1].rows;
+
+      res.render("admin", { poll, results, user });
+    });
   });
 
   router.post('/:id', (req, res) => {
