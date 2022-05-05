@@ -36,6 +36,12 @@ input,
 #instructions {
   font-family: "Jost", sans-serif;
 }
+#dragAndDrop ol:hover {
+  cursor: grab;
+}
+#dragAndDrop ol:active {
+  cursor: grabbing;
+}
 #instructions {
   text-align: center;
 }
