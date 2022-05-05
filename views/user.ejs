@@ -34,16 +34,23 @@
 
     <h1><%= user %>'s Polls</h1>
     <!-- ACTIVE POLLS -->
-    <div>
+    <div class="pollContainer">
       <h2>Active Polls</h2>
       <% for (const poll of activePolls) { %>
-      <h4><%= poll.question %></h4>
-      <% const created = poll.created_at.toDateString() %> <% const createdDate
-      = created.split(' ').slice(0, 3).join(' ') %>
-      <span>Created on: <%= createdDate %></span>
-      <a href="http://localhost:8080/<%= poll.admin_link %>">View Poll</a>
-      <% } %>
+      <div class="poll">
+        <div class="topActive">
+          <h4><%= poll.question %></h4>
+        </div>
+        <div class="bottomPortion">
+          <% const created = poll.created_at.toDateString() %> <% const
+          createdDate = created.split(' ').slice(0, 3).join(' ') %>
+          <span>Created on: <%= createdDate %></span>
+          <a href="http://localhost:8080/<%= poll.admin_link %>">View Poll</a>
+          <% } %>
+        </div>
+      </div>
     </div>
+    <!-- end of active polls -->
 
     <!-- PAST POLLS -->
     <div>
