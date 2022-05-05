@@ -61,13 +61,13 @@
             <% } else { %>
               <tr>
             <% } %>
-              <td><%= results[i].title %>
-              <td><%= results[i].score %>
+              <td><%= results[i].title %></td>
+              <td><%= Number(results[i].score) %></td>
               </tr>
           <% } %>
         </table>
 
-        <br><p><span class="highlightColor highlightBold">*</span> Results displayed are not final.<br>This poll ends on <span class="highlightColor highlightBold">Sat May 7th</span>.</p>
+        <p><span class="highlightColor highlightBold">*</span> Results displayed are not final.<br>This poll ends on <span class="highlightColor highlightBold">Sat May 7th</span>.</p>
       </div>
 
       <!-- SHARE POLL LINK -->
