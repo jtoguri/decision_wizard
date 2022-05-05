@@ -21,7 +21,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Jost&family=Perma    nent+Marker&family=Raleway:wght@800&family=Voltaire&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bowlby+One&family=Jost:wght@400;800&family=Permanent+Marker&family=Raleway:wght@800&display=swap"
       rel="stylesheet"
     />
 
@@ -32,30 +32,61 @@
   <body id="myPolls">
     <%- include('partials/_header') %>
 
-    <h1><%= user %>'s Polls</h1>
-    <!-- ACTIVE POLLS -->
-    <div>
-      <h2>Active Polls</h2>
-      <% for (const poll of activePolls) { %>
-      <h4><%= poll.question %></h4>
-      <% const created = poll.created_at.toDateString() %> <% const createdDate
-      = created.split(' ').slice(0, 3).join(' ') %>
-      <span>Created on: <%= createdDate %></span>
-      <a href="http://localhost:8080/<%= poll.admin_link %>">View Poll</a>
-      <% } %>
-    </div>
+    <div class="containerAll">
+      <h1 id="usersPolls"><%= user %>'s Polls</h1>
 
-    <!-- PAST POLLS -->
-    <div>
-      <h2>Past Polls</h2>
-      <% for (const poll of completedPolls) { %>
-      <h4><%= poll.question %></h4>
-      <p>Winner: Y</p>
-      <% const closed = poll.closed_at.toDateString() %> <% const closedDate =
-      closed.split(' ').slice(0, 3).join(' ') %>
-      <span>Closed on: <%= closedDate %></span>
-      <a href="http://localhost:8080/<%= poll.admin_link %>">View Poll</a>
-      <% } %>
+      <!-- ACTIVE POLLS -->
+      <h3 class="pollsActivePast">Active Polls</h3>
+      <div class="pollContainer">
+        <% for (const poll of activePolls) { %>
+        <div class="poll">
+          <div class="topPortion activePoll">
+            <h4><%= poll.question %></h4>
+          </div>
+          <div class="bottomPortion">
+            <% const created = poll.created_at.toDateString() %> <% const
+            createdDate = created.split(' ').slice(0, 3).join(' ') %>
+            <p class="smallText">Created on:</p>
+            <div class="centerHorizontally">
+              <p class="date"><%= createdDate %></p>
+              <p class="link">
+                <a
+                  href="http://localhost:8080/<%= poll.admin_link %>"
+                  class="link"
+                  >View Poll</a
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+        <% } %>
+      </div>
+
+      <!-- PAST POLLS -->
+
+      <h3 class="pollsActivePast">Past Polls</h3>
+      <div class="pollContainer">
+        <% for (const poll of activePolls) { %>
+        <div class="poll">
+          <div class="topPortion pastPoll">
+            <h4><%= poll.question %></h4>
+          </div>
+          <div class="bottomPortion">
+            <% const created = poll.created_at.toDateString() %> <% const
+            createdDate = created.split(' ').slice(0, 3).join(' ') %>
+            <span class="smallText">Created on:</span>
+            <div class="centerHorizontally">
+              <p class="date"><%= createdDate %></p>
+              <p class="link">
+                <a href="http://localhost:8080/<%= poll.admin_link %>"
+                  >View Poll</a
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+        <% } %>
+      </div>
     </div>
   </body>
 </html>
