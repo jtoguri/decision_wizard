@@ -6,7 +6,7 @@
  */
 
 const express = require('express');
-const { generateExternalPollId, sendNewResponseMail, sendNewPollMail } = require("../helpers");
+const { generateExternalPollId, sendNewResponseMail, sendNewPollMail, closePollByUUID } = require("../helpers");
 
 const router  = express.Router();
 
@@ -54,6 +54,8 @@ module.exports = (queries) => {
   router.get('/:id', (req, res) => {
     const uuid = req.params.id;
 
+
+
     queries.getPollByUUID(uuid)
       .then(data => {
         const poll = data.rows[0];
@@ -65,6 +67,9 @@ module.exports = (queries) => {
     const uuid = req.params.id;
     const promises = [];
     const user = req.cookies.user_id;
+    const now = Date.now();
+    let isClosed = false;
+
 
     promises.push(queries.findPollByUUID(uuid),
       queries.getPollResultsByUUID(uuid));
@@ -73,7 +78,11 @@ module.exports = (queries) => {
       const poll = values[0].rows[0];
       const results = values[1].rows;
 
-      res.render("admin", { poll, results, user });
+      if (poll.end_date < now){
+        isClosed = true;
+      }
+
+      res.render("admin", { poll, results, user, isClosed });
     });
   });
 
@@ -109,8 +118,12 @@ module.exports = (queries) => {
       });
   });
 
-  router.post('/:id/delete', (req, res) => {
-    console.log('post route to delete a poll');
+  router.post('/:id/close', (req, res) => {
+    const uuid = req.params.id;
+
+    queries.closePollByUUID(uuid);
+    res.redirect(`/api/polls/${uuid}/admin`);
+
   });
   return router;
 
