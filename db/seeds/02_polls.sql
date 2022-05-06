@@ -18,12 +18,12 @@ INSERT INTO polls
     ('food', 'Where should we go to eat?',
     'api/polls/food/admin', 'api/polls/food', 1,
     '2022-01-13', '2022-01-08', '2022-01-13', 3);
-INSERT INTO polls
+/*INSERT INTO polls
   (external_uuid, question, admin_link, submission_link, creator_id, created_at,
   end_date, closed_at, choice_count) VALUES
     ('movies', 'What movie should we see?',
     'api/polls/movies/admin', 'api/polls/movies', 2,
-    '2022-04-26', '2022-06-26', NULL, 4);
+    '2022-04-26', '2022-06-26', NULL, 4);*/
 INSERT INTO polls
   (external_uuid, question, admin_link, submission_link, creator_id, created_at,
   end_date, closed_at, choice_count) VALUES

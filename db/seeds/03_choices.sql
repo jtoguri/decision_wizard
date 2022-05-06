@@ -9,7 +9,7 @@ INSERT INTO choices
   (poll_id, title) VALUES
     (1, 'Hot Dog Stand');
 
-INSERT INTO choices
+/*INSERT INTO choices
   (poll_id, title) VALUES
     (2, 'Batman');
 INSERT INTO choices
@@ -20,7 +20,7 @@ INSERT INTO choices
     (2, 'Little Women');
 INSERT INTO choices
   (poll_id, title) VALUES
-    (2, 'Pulp Fiction');
+    (2, 'Pulp Fiction');*/
 
 
 INSERT INTO choices
