@@ -7,12 +7,12 @@ $(document).ready(function () {
     // e.preventDefault();
 
     // Count all divs with .option class, use to increment input name with adding new options
-    const numberOfOptions = $('#optionsContainer').children().length; 
+    const numberOfOptions = $('#optionsContainer').children().length;
 
     const newOption = `
     <div class="input-group">
-    <input class="form-control noRightBorder" type="text" name="choices[choice${numberOfOptions + 1}][title]" placeholder="New option" required />
-    <input class="form-control noRightBorder" type="text" name="choices[choice${numberOfOptions + 1}][describe]" placeholder="new decription" />
+    <input class="form-control noRightBorder" type="text" name="choices[choice${numberOfOptions + 1}][title]" placeholder="New Option" required />
+    <input class="form-control noRightBorder" type="text" name="choices[choice${numberOfOptions + 1}][describe]" placeholder="Description" />
     <button class="btn btn-outline-secondary btn-sm removeOption" type="button"> x </button>
     </div>`;
 
@@ -29,7 +29,7 @@ $(document).ready(function () {
 
     const pollData = $(this).serialize();
 
-    $.post("/api/polls", pollData, function(response) {
+    $.post("/api/polls", pollData, function (response) {
       const path = response;
       window.location.assign(path);
     });
