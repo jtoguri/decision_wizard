@@ -15,7 +15,7 @@ module.exports = {
   sendNewResponseMail: (info) => {
     const email = info.email;
     const question = info.question;
-    const url = `http://localhost:8080/api/polls/${info.uuid}`;
+    const url = `http://localhost:8080/api/polls/${info.uuid}/admin`;
 
     mg.messages.create('sandboxccb09bee7c9a4f58bdecfb63b9aa73ba.mailgun.org', {
       from: `Decision Wizard <fjord@decisionwizard.com>`,
@@ -34,7 +34,7 @@ module.exports = {
     const email = info.email;
     const question = info.question;
     const name = info.name;
-    const url = `http://localhost:8080/api/polls/${info.externalPollId}`;
+    const url = `http://localhost:8080/api/polls/${info.externalPollId}/admin`;
 
     mg.messages.create('sandboxccb09bee7c9a4f58bdecfb63b9aa73ba.mailgun.org', {
       from: `Decision Wizard <fjord@decisionwizard.com>`,
