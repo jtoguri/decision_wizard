@@ -54,6 +54,8 @@ module.exports = (queries) => {
   router.get('/:id', (req, res) => {
     const uuid = req.params.id;
 
+
+
     queries.getPollByUUID(uuid)
       .then(data => {
         const poll = data.rows[0];
@@ -65,6 +67,9 @@ module.exports = (queries) => {
     const uuid = req.params.id;
     const promises = [];
     const user = req.cookies.user_id;
+    const now = Date.now();
+    let isClosed = false;
+
 
     promises.push(queries.findPollByUUID(uuid),
       queries.getPollResultsByUUID(uuid));
@@ -73,7 +78,11 @@ module.exports = (queries) => {
       const poll = values[0].rows[0];
       const results = values[1].rows;
 
-      res.render("admin", { poll, results, user });
+      if (poll.end_date < now){
+        isClosed = true;
+      }
+
+      res.render("admin", { poll, results, user, isClosed });
     });
   });
 
@@ -112,14 +121,9 @@ module.exports = (queries) => {
   router.post('/:id/close', (req, res) => {
     const uuid = req.params.id;
 
-    queries.closePollByUUID(uuid)
-    .then((result) => {
-      console.log(result);
-    });
+    queries.closePollByUUID(uuid);
+    res.redirect(`/api/polls/${uuid}/admin`);
 
-
-
-    // res.redirect(302, `localhost:8080/api/polls/${req.params.id}/`);
   });
   return router;
 

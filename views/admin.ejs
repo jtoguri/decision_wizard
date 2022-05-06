@@ -38,104 +38,136 @@
   <%- include('partials/_header') %>
 
 
-    <div id="vertical">
-      <!-- POLL RESULTS -->
-      <div id="pollResults">
-        <h1 id="pollh1">Poll Results</h1>
-        <table id="resultsTable">
-          <caption>
-            <%= poll.question %>
-          </caption>
-          <thead>
-            <tr>
-              <th class="tableHeading" scope="col">CHOICES</th>
-              <th class="tableHeading" scope="col">SCORE</th>
-            </tr>
-          </thead>
-          <% for (let i=0; i < results.length; i++) { %>
-            <% if (i===0) { %>
-              <tr class="optionInTheLead">
-                <% } else { %>
+    <% if (!isClosed) { %>
+
+      <div id="vertical">
+        <!-- POLL RESULTS -->
+        <div id="pollResults">
+          <h1 id="pollh1">Poll Results</h1>
+          <table id="resultsTable">
+            <caption>
+              <%= poll.question %>
+            </caption>
+            <thead>
               <tr>
-                <% } %>
-                  <td>
-                    <%= results[i].title %>
-                  </td>
-                  <td>
-                    <%= Number(results[i].score) %>
-                  </td>
+                <th class="tableHeading" scope="col">CHOICES</th>
+                <th class="tableHeading" scope="col">SCORE</th>
               </tr>
-              <% } %>
-        </table>
+            </thead>
+            <% for (let i=0; i < results.length; i++) { %>
+              <% if (i===0) { %>
+                <tr class="optionInTheLead">
+                  <% } else { %>
+                <tr>
+                  <% } %>
+                    <td>
+                      <%= results[i].title %>
+                    </td>
+                    <td>
+                      <%= Number(results[i].score) %>
+                    </td>
+                </tr>
+                <% } %>
+          </table>
 
-        <p><span class="highlightColor highlightBold">*</span> Results
-          displayed are not final.<br>This poll ends on <span class="highlightColor highlightBold">
-            <%= poll.end_date.toDateString() %>
-          </span>.</p>
-      </div>
+          <p><span class="highlightColor highlightBold">*</span> Results
+            displayed are not final.<br>This poll ends on <span class="highlightColor highlightBold">
+              <%= poll.end_date.toDateString() %>
+            </span>.</p>
+        </div>
 
-      <!-- SHARE POLL LINK -->
-      <div id="sharePoll">
-        <h3>Share This Poll:</h3>
+        <!-- SHARE POLL LINK -->
+        <div id="sharePoll">
+          <h3>Share This Poll:</h3>
 
-        <div class="linkContainer">
-          <button type="button" id="copyButton">
-            <i id="shareIcon" class="fa-solid fa-link"></i>
-          </button>
-          <% const subLink=`localhost:8080/${poll.submission_link}` %>
-            <a target="_blank" href="http://<%= subLink %>" class="shareLink">
-              <%= subLink %>
-            </a>
+          <div class="linkContainer">
+            <button type="button" id="copyButton">
+              <i id="shareIcon" class="fa-solid fa-link"></i>
+            </button>
+            <% const subLink=`localhost:8080/${poll.submission_link}` %>
+              <a target="_blank" href="http://<%= subLink %>" class="shareLink">
+                <%= subLink %>
+              </a>
+          </div>
+        </div>
+
+
+        <div class="my-4 py-4 linkContainer">
+          <form class="form" action="<%=`/api/polls/${poll.external_uuid}/close`%>" name="<%=`${poll.uuid}`%>"
+            method="post">
+            <!-- <i id="removeIcon" class="fa-solid fa-remove"></i> -->
+            <!-- <button class="btn btn-outline-secondary btn-lg" type="submit">Close this poll</button> -->
+            <button id="closeButton" type="submit">Close this poll</button>
+          </form>
         </div>
       </div>
 
+      <!-- PREVIEW OF POLE -->
+      <div id="preview">
+        <div id="previewLabel">
+          <p><span id="prevText">PREVIEW OF POLL</spa>
+          </p>
+        </div>
+        <div class="">
+          <h2 id="questionString">
+            <%= poll.question %>
+          </h2>
 
-      <div id="closePoll" class="pt-3">
+          <p id="instructions">
+            <i id="hand" class="fa-regular fa-hand"></i> Drag and drop to rank the
+            options <br />(<span id="firstChoice">1st</span> choice at the top, last
+            choice at the bottom)
+          </p>
 
-        <!-- <input id="closebutton" type="submit" class="btn btn-primary" value="Close" />
-          </button> -->
-        <form class="form" action="<%=`/api/polls/${poll.external_uuid}/close`%>" name="<%=`${poll.uuid}`%>"
-          method="post">
-          <button class="btn btn-outline-primary btn-sm" type="submit">Close this poll</button>
-
-        </form>
-
-      </div>
-
-
-    </div>
-
-
-
-    <!-- PREVIEW OF POLE -->
-    <div id="preview">
-      <div id="previewLabel">
-        <p><span id="prevText">PREVIEW OF POLL</spa>
-        </p>
-      </div>
-      <div class="">
-        <h2 id="questionString">
-          <%= poll.question %>
-        </h2>
-
-        <p id="instructions">
-          <i id="hand" class="fa-regular fa-hand"></i> Drag and drop to rank the
-          options <br />(<span id="firstChoice">1st</span> choice at the top, last
-          choice at the bottom)
-        </p>
-
-        <div id="dragAndDrop" class="d-flex justify-content-center my-4">
-          <ol id="sortable" class="ui-sortable list-group">
-            <% for (const choice of results) { %>
-              <li class="ui-sortable-handle list-group-item">
-                <%= choice.title %>
-              </li>
-              <% } %>
-          </ol>
+          <div id="dragAndDrop" class="d-flex justify-content-center my-4">
+            <ol id="sortable" class="ui-sortable list-group">
+              <% for (const choice of results) { %>
+                <li class="ui-sortable-handle list-group-item">
+                  <%= choice.title %>
+                </li>
+                <% } %>
+            </ol>
+          </div>
         </div>
       </div>
-    </div>
 
+      <% } else { %>
+
+        <div id="vertical">
+          <div id="pollResults">
+            <h1 id="pollh1">Final Results</h1>
+            <table id="resultsTable">
+              <caption>
+                <%= poll.question %>
+              </caption>
+              <thead>
+                <tr>
+                  <th class="tableHeading" scope="col">CHOICES</th>
+                  <th class="tableHeading" scope="col">SCORE</th>
+                </tr>
+              </thead>
+              <% for (let i=0; i < results.length; i++) { %>
+                <% if (i===0) { %>
+                  <tr class="optionInTheLead">
+                    <% } else { %>
+                  <tr>
+                    <% } %>
+                      <td>
+                        <%= results[i].title %>
+                      </td>
+                      <td>
+                        <%= Number(results[i].score) %>
+                      </td>
+                  </tr>
+                  <% } %>
+            </table>
+
+            <p>This poll ended on <span class="highlightColor highlightBold">
+                <%= poll.end_date.toDateString() %>
+              </span>.</p>
+          </div>
+
+          <% } %>
 </body>
 
 </html>

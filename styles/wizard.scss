@@ -320,7 +320,6 @@ h1 {
   line-height: normal;
 }
 
-#closePoll,
 #sharePoll {
   font-family: "Raleway", sans-serif;
   display: flex;
@@ -344,11 +343,26 @@ h1 {
   padding: 1em;
 }
 
+#closeButton {
+  font-family: "Jost", sans-serif;
+  background-color: transparent;
+  color: #bfc6cd;
+  border: 2px solid #bfc6cd;
+  border-radius: 0.5em;
+  padding: .5em;
+}
+
+#closeButton:hover {
+  border: 3px solid #b2b9c1;
+}
+
+
 #copyButton {
   border: none;
   background: transparent;
 }
 
+#removeIcon,
 #shareIcon {
   font-size: xx-large;
   position: relative;
