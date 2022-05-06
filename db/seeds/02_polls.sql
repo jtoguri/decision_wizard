@@ -33,4 +33,4 @@ INSERT INTO polls
   (external_uuid, question, admin_link, submission_link, creator_id, created_at,
   end_date, closed_at, choice_count) VALUES
     ('cars', 'Which car is Best?', 'api/polls/cars/admin', 'api/polls/cars', 3,
-    '2022-5-01', '2022-5-05', NULL, 3);
+    '2022-5-01', '2022-5-05', NULL, 6);

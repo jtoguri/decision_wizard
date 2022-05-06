@@ -4,7 +4,7 @@ $(document).ready(function () {
 
   // Create sortable list using jqueryUI sortable widget
   $("#sortable").sortable();
-  $("#sortable li").sortable();
+  //$("#sortable li").sortable();
 
   $("#voteSubmit").submit(function (e) {
     e.preventDefault();
@@ -20,7 +20,7 @@ $(document).ready(function () {
         <table id="resultsTable">
           <thead>
             <tr>
-              <th class="tableHeading" scope="col">Choices</th>
+              <th class="tableHeading" scope="col">CHOICES</th>
               <th class="tableHeading" scope="col">SCORE</th>
             </tr>
           </thead>
@@ -38,5 +38,16 @@ $(document).ready(function () {
 
       $('.container').empty().append(result);
     });
+  });
+
+  $(".showDescription").on("click", function () {
+    if ($(this).siblings(".description").css("display") === "none") {
+      $(this).text("hide description");
+      $(this).siblings(".description").slideDown();
+      return;
+    }
+
+    $(this).siblings(".description").slideUp();
+    $(this).text("view description");
   });
 });
