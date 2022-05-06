@@ -68,7 +68,8 @@ module.exports = (db) => {
         } 
         completedPolls.push(poll);
       }
-      const templateVars = { activePolls, completedPolls,  user: name };
+      const templateVars = { activePolls, completedPolls,  user: userId,
+      name };
       res.render("user", templateVars);
     });
 
