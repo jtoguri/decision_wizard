@@ -31,7 +31,7 @@
   <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
   <script type="text/javascript" src="/scripts/vote-submission.js"></script>
   <script type="text/javascript" src="/scripts/clipboard.js"></script>
-  <script type="text/javascript" src="/scripts/close-poll.js"></script>
+  <!-- <script type="text/javascript" src="/scripts/close-poll.js"></script> -->
 </head>
 
 <body id="flex1">
@@ -91,19 +91,14 @@
 
 
       <div id="closePoll" class="pt-3">
-        <h3>Close this Poll:</h3>
 
-        <div class="linkContainer mt-0">
-          <!-- <input id="closebutton" type="submit" class="btn btn-primary" value="Close" />
+        <!-- <input id="closebutton" type="submit" class="btn btn-primary" value="Close" />
           </button> -->
-          <form class="form" action="<%`/api/polls/${id}/delete`%>" method="post">
-            <button type="submit">Close this poll</button>
+        <form class="form" action="<%=`/api/polls/${poll.external_uuid}/close`%>" name="<%=`${poll.uuid}`%>"
+          method="post">
+          <button class="btn btn-outline-primary btn-sm" type="submit">Close this poll</button>
 
-          </form>
-
-
-          </form>
-        </div>
+        </form>
 
       </div>
 

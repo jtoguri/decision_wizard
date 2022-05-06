@@ -6,7 +6,7 @@
  */
 
 const express = require('express');
-const { generateExternalPollId, sendNewResponseMail, sendNewPollMail } = require("../helpers");
+const { generateExternalPollId, sendNewResponseMail, sendNewPollMail, closePollByUUID } = require("../helpers");
 
 const router  = express.Router();
 
@@ -109,8 +109,17 @@ module.exports = (queries) => {
       });
   });
 
-  router.post('/:id/delete', (req, res) => {
-    console.log('post route to delete a poll');
+  router.post('/:id/close', (req, res) => {
+    const uuid = req.params.id;
+
+    queries.closePollByUUID(uuid)
+    .then((result) => {
+      console.log(result);
+    });
+
+
+
+    // res.redirect(302, `localhost:8080/api/polls/${req.params.id}/`);
   });
   return router;
 

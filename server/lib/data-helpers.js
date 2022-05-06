@@ -120,8 +120,6 @@ module.exports = (db) => {
 
       return db.query(queryString, queryParams);
     },
-        //SELECT array_agg(choiceID) as ranking, array_agg(title) as
-        //titles, array_agg(sum) as scores FROM
 
     getPollResultsByUUID: (uuid) => {
       const queryString = `
@@ -161,7 +159,6 @@ module.exports = (db) => {
 
       const queryParams = [uuid];
 
-      queryString = queryString.slice(0, -2);
       queryString += '\n  RETURNING *;';
 
       return db.query(queryString, queryParams);

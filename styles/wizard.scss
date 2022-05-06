@@ -96,6 +96,7 @@ body {
   color: black;
 }
 
+
 .removeOption {
   // font-family: "Bowlby One", cursive;
   font-family: "Permanent Marker", cursive;
@@ -131,6 +132,7 @@ body {
   flex-direction: column;
   align-items: flex-start;
 }
+
 .showDescription {
   border: none;
   padding: 0;
@@ -139,9 +141,11 @@ body {
   font-size: 0.75em;
   color: blue;
 }
+
 .list-group-item .description {
   display: none;
 }
+
 .showDescription:hover {
   color: #6a3190;
 }
@@ -567,6 +571,7 @@ h1 {
   color: #6a3190;
   font-weight: bold;
 }
+
 .pollName {
   font-size: 1.25em;
   font-family: "Russo One", sans-serif;
