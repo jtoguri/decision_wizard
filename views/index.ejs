@@ -27,126 +27,72 @@
 
 <body>
   <%- include('partials/_header') %>
-  <div class="containerAll">
+    <div class="containerAll">
 
 
 
-    <!-- GET POLL DETAILS -->
-    <form id="pollForm" class="form" action="/api/polls" method="post">
-      <div class="mb-3">
-        <h1 id="helpDecide">Help me decide...</h1>
-        <input class="form-control" type="text" name="pollQuestion" placeholder="Where should we eat tonight?"
-          required />
-      </div>
-
-      <div class="mt-5">
-        <h5 id="addOptions">Now, add some options...</h5>
-      </div>
-
-      <div id="optionsContainer">
-
-        <div class="input-group">
-          <input
-            class="form-control noRightBorder"
-            type="text"
-            name="choices[choice1][title]"
-            placeholder="The hot dog stand"
-            required
-          />
-          <input
-            class="form-control noRightBorder"
-            type="text"
-            name="choices[choice1][describe]"
-            placeholder="it's good and cheap"
-          /><br />
-          <button
-            class="btn btn-outline-secondary btn-sm removeOption"
-            type="button"
-          >
-            x
-          </button>
-          <br />
+      <!-- GET POLL DETAILS -->
+      <form id="pollForm" class="form" action="/api/polls" method="post">
+        <div class="mb-3">
+          <h1 id="helpDecide">Help me decide...</h1>
+          <input class="form-control" type="text" name="pollQuestion" placeholder="Where should we eat tonight?"
+            required />
         </div>
 
-        <div class="input-group">
-          <input
-            class="form-control noRightBorder"
-            type="text"
-            name="choices[choice2][title]"
-            placeholder="Red Lobster"
-            required
-          />
-          <input
-            class="form-control noRightBorder"
-            type="text"
-            name="choices[choice2][describe]"
-            placeholder="Close to the office"
-          /><br />
-          <button
-            class="btn btn-outline-secondary btn-sm removeOption"
-            type="button"
-          >
-            x</button
-          ><br />
+        <div class="mt-5">
+          <h5 id="addOptions">Now, add some options...</h5>
         </div>
 
-        <div class="input-group">
-          <input
-            class="form-control noRightBorder"
-            type="text"
-            name="choices[choice3][title]"
-            placeholder="Old McDonalds"
-            required
-          />
-          <input
-            class="form-control noRightBorder"
-            type="text"
-            name="choices[choice3][describe]"
-            placeholder="Tiny cheeseburgers"
-          />
-          <button
-            class="btn btn-outline-secondary btn-sm removeOption"
-            type="button"
-          >
-            x
-          </button>
-        </div>
-      </div>
+        <div id="optionsContainer">
 
-      <!-- ADD ADDITIONAL OPTIONS -->
-      <div class="d-flex justify-content-end my-3">
-        <button id="addMoreOptionsButton" class="btn btn-outline-info btn-sm addOption" type="button">
-          Add More Options
-        </button>
-      </div>
-
-
-
-      <!-- Check for a logged in user -->
-
-      <!-- <div id="userInfo" class="d-none row g-1 justify-content-between"> -->
-      <!-- <div id="userInfo" class="d-flex row g-1 justify-content-between">
-          <div class="col w-50">
-            <label for="name" class="form-label form-label-sm">Your Name:</label>
-            <input type="text" class="form-control form-control-sm" id="user[name]" name="user[name]"
-              placeholder="Fjord Windstar" />
+          <div class="input-group">
+            <input class="form-control noRightBorder" type="text" name="choices[choice1][title]"
+              placeholder="The hot dog stand" required />
+            <input class="form-control noRightBorder" type="text" name="choices[choice1][describe]"
+              placeholder="it's good and cheap" /><br />
+            <button class="btn btn-outline-secondary btn-sm removeOption" type="button">
+              x
+            </button>
+            <br />
           </div>
 
-          <div class="col w-50">
-            <label for="email" class="form-label form-label-sm">Email:</label>
-            <input type="email" class="form-control form-control-sm" id="user[email]" name="user[email]"
-              placeholder="fjord@windstar.com" /> --->
+          <div class="input-group">
+            <input class="form-control noRightBorder" type="text" name="choices[choice2][title]"
+              placeholder="Red Lobster" required />
+            <input class="form-control noRightBorder" type="text" name="choices[choice2][describe]"
+              placeholder="Close to the office" /><br />
+            <button class="btn btn-outline-secondary btn-sm removeOption" type="button">
+              x</button><br />
+          </div>
 
-      </div>
-      <div class="mt-5">
-        <h6>Poll close date (optional)</h6>
-        <input class="form-control" type="date" id="datepicker" name="end_date">
-      </div>
+          <!-- <div class="input-group">
+            <input class="form-control noRightBorder" type="text" name="choices[choice3][title]"
+              placeholder="Old McDonalds" required />
+            <input class="form-control noRightBorder" type="text" name="choices[choice3][describe]"
+              placeholder="Tiny cheeseburgers" />
+            <button class="btn btn-outline-secondary btn-sm removeOption" type="button">
+              x
+            </button>
+          </div> -->
+        </div>
 
-      <div id="pollPreview" class="d-flex justify-content-center my-4">
-        <input id="previewPoll" type="submit" class="btn btn-warning btn-lg" type="submit" value="Preview Poll" />
-        <!--<p>PREVIEW OF POLL GOES HERE</p> -->
-      </div>
+        <!-- ADD ADDITIONAL OPTIONS -->
+        <div class="d-flex justify-content-end mt-2">
+          <button id="addMoreOptionsButton" class="btn btn-outline-info btn-sm addOption" type="button">
+            Add More Options
+          </button>
+        </div>
+
+    </div>
+
+    <div class="mt-5">
+      <h6>Poll close date</h6>
+      <input class="form-control" type="date" id="datepicker" name="end_date" required>
+    </div>
+
+    <div id="pollPreview" class="my-4">
+      <input id="previewPoll" type="submit" class="btn btn-warning btn-lg" type="submit" value="Preview Poll" />
+    </div>
     </form>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
