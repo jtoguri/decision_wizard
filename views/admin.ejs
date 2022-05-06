@@ -94,9 +94,15 @@
         <h3>Close this Poll:</h3>
 
         <div class="linkContainer mt-0">
-          <input id="closePoll" type="submit" class="btn btn-primary" value="Close" />
-          <!-- <i id="shareIcon" class="fa-solid fa-link"></i> -->
-          </button>
+          <!-- <input id="closebutton" type="submit" class="btn btn-primary" value="Close" />
+          </button> -->
+          <form class="form" action="<%`/api/polls/${id}/delete`%>" method="post">
+            <button type="submit">Close this poll</button>
+
+          </form>
+
+
+          </form>
         </div>
 
       </div>

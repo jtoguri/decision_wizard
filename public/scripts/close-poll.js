@@ -1,10 +1,13 @@
 $(document).ready(function() {
 
-  $("#closePoll").on("click", function() {
-    // navigator.clipboard.writeText(`http://${$("a.shareLink").text()}`);
-    console.log('im gonna close this poll!!!');
+  $("#closebutton").on("click", function (e) {
 
+    e.preventDefault();
 
+    // const endDate = Date.now();
+    const path =`localhost:8080/${pollData.uuid}/delete`;
+
+    $.post(path, )
 
 
 

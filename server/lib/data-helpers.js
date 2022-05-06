@@ -149,6 +149,25 @@ module.exports = (db) => {
       const queryParams = [uuid];
 
       return db.query(queryString, queryParams);
+    },
+
+    closePollByUUID: (uuid) => {
+
+      let queryString = `
+      UPDATE polls
+      SET end_date = CURRENT_TIMESTAMP
+      WHERE polls.external_uuid = $1
+          `;
+
+      const queryParams = [uuid];
+
+      queryString = queryString.slice(0, -2);
+      queryString += '\n  RETURNING *;';
+
+      return db.query(queryString, queryParams);
     }
   };
 };
+
+
+
