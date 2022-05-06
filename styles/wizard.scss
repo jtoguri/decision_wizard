@@ -47,7 +47,7 @@ input,
 
 // Layout
 #pollForm {
-  margin-top: 6em;
+  // margin-top: 6em;
 }
 .container {
   margin-top: 6em;
@@ -302,7 +302,7 @@ h1 {
   justify-content: flex-start;
   display: flex;
   // align-items: center;
-  margin-top: 9em;
+  // margin-top: 9em;
 }
 // <div class="activePoll">
 //       <h4 class="pollTitle"
@@ -389,4 +389,58 @@ h1 {
 .containerAll {
   max-width: 1320px;
   justify-content: center;
+  margin-top: 9em;
+}
+.mainText {
+}
+#about {
+  font-family: "Jost", sans-serif;
+}
+.profilePic {
+  border-radius: 50%;
+  border: 3px solid black;
+  width: 250px;
+  height: 250px;
+  margin-top: 2em;
+  margin-bottom: 1.5em;
+}
+#bioSection {
+  display: flex;
+  gap: 4em;
+  justify-content: center;
+}
+.profileCard {
+  text-align: center;
+}
+.socialIcons {
+  display: flex;
+  gap: 0.5em;
+  justify-content: center;
+
+  font-size: xx-large;
+}
+.socialIcons a {
+}
+#textSection {
+  width: 57%;
+  margin: auto;
+}
+#flexContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#flexContainer > * {
+  margin-bottom: 2em;
+}
+.name {
+  font-size: larger;
+}
+.linkGit {
+  margin-top: 2em;
+}
+.linkGit a {
+  font-weight: 700;
+  // color: #6a3190;
+  text-decoration: none;
 }

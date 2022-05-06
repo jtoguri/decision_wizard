@@ -35,37 +35,74 @@
     <script type="text/javascript" src="/scripts/app.js"></script>
   </head>
 
-  <body id="about">
+  <body>
     <%- include('partials/_header') %>
 
     <div class="containerAll">
-      <h1>Eeny, Meeny, Miny, Moe</h1>
-      <p>Decision Maker is an app blah blah blah</p>
-      <a href="https://github.com/jtoguri/decision_wizard"
-        ><i class="fa-solid fa-link"></i> GitHub Repo</a
-      >
+      <div id="flexContainer">
+        <div id="textSection">
+          <h1>Eeny, Meeny, Miny, Moe</h1>
+          <p class="mainText">
+            A web app that helps groups of friends to vote on a preferred choice
+            (using ranked voting), for example: "What movie should we see next
+            Friday?".
+          </p>
 
-      <p>Joshua Toguri</p>
-      <img class="profilePic" src="/josh.png" />
-      <div class="socialIcons">
-        <i class="fa-brands fa-github"></i>
-        <i class="fa-brands fa-linkedin"></i>
-        <i class="fa-brands fa-instagram"></i>
-      </div>
-      <p>Serra Stratton</p>
-      <img class="profilePic" src="/serra.png" />
-      <div class="socialIcons">
-        <i class="fa-brands fa-github"></i>
-        <i class="fa-brands fa-linkedin"></i>
-        <i class="fa-brands fa-instagram"></i>
-      </div>
+          <p class="linkGit">
+            <a href="https://github.com/jtoguri/decision_wizard"
+              ><i class="fa-solid fa-link"></i> GitHub Repo</a
+            >
+          </p>
+        </div>
+        <div id="bioSection">
+          <div class="profileCard">
+            <img class="profilePic" src="/josh.png" />
+            <p class="name">Joshua Toguri</p>
+            <div class="socialIcons">
+              <a href="https://github.com/jtoguri?tab=repositories"
+                ><i class="fa-brands fa-github"></i
+              ></a>
+              <a href="https://www.linkedin.com/in/joshua-toguri-0a3184130/"
+                ><i class="fa-brands fa-linkedin"></i
+              ></a>
+              <a href="https://www.instagram.com/joshuatoguri/"
+                ><i class="fa-brands fa-instagram"></i
+              ></a>
+            </div>
+          </div>
 
-      <p>Jeff Bush</p>
-      <img class="profilePic" src="/jeff.png" />
-      <div class="socialIcons">
-        <i class="fa-brands fa-github"></i>
-        <i class="fa-brands fa-linkedin"></i>
-        <i class="fa-brands fa-instagram"></i>
+          <div class="profileCard">
+            <img class="profilePic" src="/serra.png" />
+            <p class="name">Serra Stratton</p>
+            <div class="socialIcons">
+              <a href="https://github.com/teknoboten"
+                ><i class="fa-brands fa-github"></i
+              ></a>
+              <a href="https://www.linkedin.com/in/serraboten/"
+                ><i class="fa-brands fa-linkedin"></i
+              ></a>
+              <a href="https://www.instagram.com/serraboten/"
+                ><i class="fa-brands fa-instagram"></i
+              ></a>
+            </div>
+          </div>
+
+          <div class="profileCard">
+            <img class="profilePic" src="/jeff.png" />
+            <p class="name">Jeff Bush</p>
+            <div class="socialIcons">
+              <a href="https://github.com/jeffbushdesign"
+                ><i class="fa-brands fa-github"></i
+              ></a>
+              <a href="https://www.linkedin.com/in/jeff-bush-74bbb853/"
+                ><i class="fa-brands fa-linkedin"></i
+              ></a>
+              <a href="https://www.instagram.com/jeffbushdesign/"
+                ><i class="fa-brands fa-instagram"></i
+              ></a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </body>
