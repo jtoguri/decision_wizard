@@ -244,6 +244,7 @@ h1 {
   border-radius: 1em;
   margin-bottom: 6em;
   align-self: flex-start;
+  position: relative;
   // margin-left: 5em;
   // margin-right: 5em;
 }
@@ -261,9 +262,9 @@ h1 {
   border: 2px solid black;
   border-radius: 13px;
   background-color: #ffc108;
-  position: relative;
-  top: -81px;
-  right: -357px;
+  position: absolute;
+  top: -17px;
+  right: -24px;
   transform: rotate(10deg);
 }
 #prevText {
