@@ -35,41 +35,88 @@
 <body>
   <%- include('partials/_header') %>
     <br />
+    <% if (!isClosed) { %>
+
+      <!-- USER RANKS CHOICES -->
+
+      <div class="container containerAll d-flex flex-column align-items-center">
+
+        <h2 id="questionString">
+          <%= poll.question %>
+        </h2>
+
+        <p id="instructions">
+          <i id="hand" class="fa-regular fa-hand"></i> Drag and drop to rank the options <br>(<span
+            id="firstChoice">1st</span> choice at the top, last choice at the bottom)
+        </p>
+
+        <div id="dragAndDrop" class="d-flex justify-content-center my-4">
+          <form class="form" id="voteSubmit" action="/api/polls/:id" method="post">
+            <ol id="sortable" class="ui-sortable list-group">
+              <% for (let i=0; i < poll.choices.length; i++) { %>
+                <li id="choice_<%= poll.ids[i] %>" class="ui-sortable-handle list-group-item">
+                  <span>
+                    <%= poll.choices[i] %>
+                  </span>
+                  <button class="showDescription" type="button">
+                    view description
+                  </button>
+                  <p class="description">
+                    <%= poll.descriptions[i] %>
+                  </p>
+                </li>
+                <% } %>
+            </ol>
+        </div>
+        <div id="pollPreview" class="d-flex justify-content-center my-4">
+          <input id="submitPoll" type="submit" class="btn btn-warning btn-lg" type="submit" value="Decide!" />
+
+          </form>
+
+        </div>
+
+        <% } else { %>
+
+          <div id="vertical">
+            <div id="pollResults">
+              <h1 id="pollh1">Final Results</h1>
+              <table id="resultsTable">
+                <caption>
+                  <%= poll.question %>
+                </caption>
+                <thead>
+                  <tr>
+                    <th class="tableHeading" scope="col">CHOICES</th>
+                    <th class="tableHeading" scope="col">SCORE</th>
+                  </tr>
+                </thead>
+                <% for (let i=0; i < results.length; i++) { %>
+                  <% if (i===0) { %>
+                    <tr class="optionInTheLead">
+                      <% } else { %>
+                    <tr>
+                      <% } %>
+                        <td>
+                          <%= results[i].title %>
+                        </td>
+                        <td>
+                          <%= Number(results[i].score) %>
+                        </td>
+                    </tr>
+                    <% } %>
+              </table>
+
+              <p>This poll ended on <span class="highlightColor highlightBold">
+                  <%= poll.end_date.toDateString() %>
+                </span>.</p>
+            </div>
 
 
-    <!-- USER RANKS CHOICES -->
 
-    <div class="container containerAll d-flex flex-column align-items-center">
 
-      <h2 id="questionString">
-        <%= poll.question %>
-      </h2>
 
-      <p id="instructions">
-        <i id="hand" class="fa-regular fa-hand"></i> Drag and drop to rank the options <br>(<span
-          id="firstChoice">1st</span> choice at the top, last choice at the bottom)
-      </p>
+            <% } %>
 
-      <div id="dragAndDrop" class="d-flex justify-content-center my-4">
-        <form class="form" id="voteSubmit" action="/api/polls/:id" method="post">
-          <ol id="sortable" class="ui-sortable list-group">
-            <% for (let i=0; i < poll.choices.length; i++) { %>
-              <li id="choice_<%= poll.ids[i] %>" class="ui-sortable-handle list-group-item">
-                <span><%= poll.choices[i] %></span>
-                <button class="showDescription" type="button">
-                  view description
-                </button>
-                <p class="description"><%= poll.descriptions[i] %></p>
-              </li>
-              <% } %>
-          </ol>
-      </div>
-      <div id="pollPreview" class="d-flex justify-content-center my-4">
-        <input id="submitPoll" type="submit" class="btn btn-warning btn-lg" type="submit" value="Decide!" />
-
-        </form>
-
-      </div>
 </body>
 
 </html>
