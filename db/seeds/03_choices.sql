@@ -9,7 +9,7 @@ INSERT INTO choices
   (poll_id, title) VALUES
     (1, 'Hot Dog Stand');
 
-INSERT INTO choices
+/*INSERT INTO choices
   (poll_id, title) VALUES
     (2, 'Batman');
 INSERT INTO choices
@@ -20,34 +20,34 @@ INSERT INTO choices
     (2, 'Little Women');
 INSERT INTO choices
   (poll_id, title) VALUES
-    (2, 'Pulp Fiction');
+    (2, 'Pulp Fiction');*/
 
 
 INSERT INTO choices
   (poll_id, title) VALUES
-    (3, 'Black Bear');
+    (2, 'Black Bear');
 INSERT INTO choices
   (poll_id, title) VALUES
-    (3, 'Polar Bear');
+    (2, 'Polar Bear');
 INSERT INTO choices
   (poll_id, title) VALUES
-    (3, 'Grizzly Bear');
+    (2, 'Grizzly Bear');
 
 INSERT INTO choices
   (poll_id, title) VALUES
-    (4, 'Cybertruck');
+    (3, 'Cybertruck');
 INSERT INTO choices
   (poll_id, title) VALUES
-    (4, 'Areostar');
+    (3, 'Areostar');
 INSERT INTO choices
   (poll_id, title) VALUES
-    (4, 'Bike');
+    (3, 'Bike');
 INSERT INTO choices
   (poll_id, title) VALUES
-    (4, 'Grand Caravan');
+    (3, 'Grand Caravan');
 INSERT INTO choices
   (poll_id, title) VALUES
-    (4, 'Delica');
+    (3, 'Delica');
 INSERT INTO choices
   (poll_id, title) VALUES
-    (4, 'Windstar');
+    (3, 'Windstar');

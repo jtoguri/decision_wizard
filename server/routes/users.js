@@ -44,8 +44,9 @@ module.exports = (db) => {
     }
     
     const queryString = `
-      select * from polls
-        where polls.creator_id = $1;`;
+      select polls.*, users.name from polls
+        right join users on polls.creator_id = users.id
+        where users.id = $1;`;
 
     const queryParams = [userId];
     
@@ -54,14 +55,21 @@ module.exports = (db) => {
     .then(polls => {
       const activePolls = [];
       const completedPolls = [];
+    
+      const name = polls[0].name;
+
       for (const poll of polls) {
-        if (Date.UTC(poll.closed_at) < Date.now()) {
-          activePolls.push(poll);
-        } else {
-          completedPolls.push(poll);
+        if (Number(poll.id) === 0) {
+          break; 
         }
+        if (Date.parse(poll.end_date) > Date.now()) {
+          activePolls.push(poll);
+          continue;
+        } 
+        completedPolls.push(poll);
       }
-      const templateVars = { activePolls, completedPolls,  user: userId };
+      const templateVars = { activePolls, completedPolls,  user: userId,
+      name };
       res.render("user", templateVars);
     });
 
