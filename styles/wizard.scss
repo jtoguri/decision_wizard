@@ -444,3 +444,21 @@ h1 {
   // color: #6a3190;
   text-decoration: none;
 }
+.listyMcListison {
+  font-weight: 700;
+  color: #6a3190;
+}
+.listyMcListison li span {
+  color: black;
+}
+.italics {
+  font-size: small;
+  font-weight: 200;
+  font-style: italic;
+  // justify-content: flex-end;
+  // text-align: right;
+}
+.asterix {
+  color: #6a3190;
+  font-weight: bold;
+}
