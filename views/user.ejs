@@ -21,7 +21,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bowlby+One&family=Jost:wght@400;800&family=Permanent+Marker&family=Raleway:wght@800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bowlby+One&family=Jost:wght@400;800&family=Permanent+Marker&family=Raleway:wght@800&family=Russo+One&display=swap"
       rel="stylesheet"
     />
 
@@ -39,12 +39,11 @@
       <h3 class="pollsActivePast">Active Polls</h3>
       <div class="pollContainer">
         <% if (activePolls.length === 0) { %>
-          <p>No active polls.</p>
-        <% } %>
-        <% for (const poll of activePolls) { %>
+        <p>No active polls.</p>
+        <% } %> <% for (const poll of activePolls) { %>
         <div class="poll">
           <div class="topPortion activePoll">
-            <h4><%= poll.question %></h4>
+            <h4 class="pollName"><%= poll.question %></h4>
           </div>
           <div class="bottomPortion">
             <% const created = poll.created_at.toDateString() %>
@@ -69,12 +68,11 @@
       <h3 class="pollsActivePast">Past Polls</h3>
       <div class="pollContainer">
         <% if (completedPolls.length === 0) { %>
-          <p>No completed polls.</p>
-        <% } %>
-        <% for (const poll of completedPolls) { %>
+        <p>No completed polls.</p>
+        <% } %> <% for (const poll of completedPolls) { %>
         <div class="poll">
           <div class="topPortion pastPoll">
-            <h4><%= poll.question %></h4>
+            <h4 class="pollName"><%= poll.question %></h4>
           </div>
           <div class="bottomPortion">
             <% const ended = poll.end_date.toDateString() %>
