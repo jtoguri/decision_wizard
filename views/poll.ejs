@@ -55,7 +55,11 @@
           <ol id="sortable" class="ui-sortable list-group">
             <% for (let i=0; i < poll.choices.length; i++) { %>
               <li id="choice_<%= poll.ids[i] %>" class="ui-sortable-handle list-group-item">
-                <%= poll.choices[i] %>
+                <span><%= poll.choices[i] %></span>
+                <button class="showDescription" type="button">
+                  view description
+                </button>
+                <p class="description"><%= poll.descriptions[i] %></p>
               </li>
               <% } %>
           </ol>
