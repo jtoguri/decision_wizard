@@ -113,9 +113,10 @@ module.exports = (queries) => {
 
   router.post('/:id/close', (req, res) => {
     const uuid = req.params.id;
-    queries.closePollByUUID(uuid);
-    res.redirect(`/api/polls/${uuid}/admin`);
-
+    queries.closePollByUUID(uuid)
+    .then(() => {
+      res.redirect(`/api/polls/${uuid}/admin`);
+    });
   });
   return router;
 
