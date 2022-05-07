@@ -124,7 +124,7 @@ module.exports = (db) => {
     getPollResultsByUUID: (uuid) => {
       const queryString = `
           SELECT choices.id as choiceId, choices.title
-          as title, SUM(choice_count - position) as score
+          as title, choices.description as description, SUM(choice_count - position) as score
             FROM choices
               JOIN polls ON polls.id = choices.poll_id
               LEFT JOIN votes ON votes.choice_id = choices.id
