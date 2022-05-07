@@ -53,13 +53,20 @@ module.exports = (queries) => {
 
   router.get('/:id', (req, res) => {
     const uuid = req.params.id;
+    const promises = [];
+    
+    promises.push(queries.getPollByUUID(uuid));
+    promises.push(queries.getPollResultsByUUID(uuid));
 
-    queries.getPollByUUID(uuid)
-      .then(data => {
-        const poll = data.rows[0];
-        const isClosed = compareEndDate(poll);
-        res.render("poll", { poll, user: req.cookies.user_id, isClosed});
-      });
+    Promise.all(promises).then(values => {
+      const poll = values[0].rows[0];
+      const isClosed = compareEndDate(poll);
+
+      const results = values[1].rows;
+      console.log(poll, results);
+      res.render("poll", { poll, user: req.cookies.user_id, isClosed,
+      results});
+    });
   });
 
   router.get('/:id/admin', (req, res) => {
