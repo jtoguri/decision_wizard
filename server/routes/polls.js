@@ -58,10 +58,6 @@ module.exports = (queries) => {
       .then(data => {
         const poll = data.rows[0];
         const isClosed = compareEndDate(poll);
-
-        console.log(poll)
-        // console.log(isClosed);
-
         res.render("poll", { poll, user: req.cookies.user_id, isClosed});
       });
   });

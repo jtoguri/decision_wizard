@@ -34,7 +34,7 @@
 
 <body>
   <%- include('partials/_header') %>
-    <br />
+
     <% if (!isClosed) { %>
 
       <!-- USER RANKS CHOICES -->
@@ -76,46 +76,13 @@
         </div>
 
         <% } else { %>
-
-          <div id="vertical">
-            <div id="pollResults">
-              <h1 id="pollh1">Final Results</h1>
-              <table id="resultsTable">
-                <caption>
-                  <%= poll.question %>
-                </caption>
-                <thead>
-                  <tr>
-                    <th class="tableHeading" scope="col">CHOICES</th>
-                    <th class="tableHeading" scope="col">SCORE</th>
-                  </tr>
-                </thead>
-                <% for (let i=0; i < results.length; i++) { %>
-                  <% if (i===0) { %>
-                    <tr class="optionInTheLead">
-                      <% } else { %>
-                    <tr>
-                      <% } %>
-                        <td>
-                          <%= results[i].title %>
-                        </td>
-                        <td>
-                          <%= Number(results[i].score) %>
-                        </td>
-                    </tr>
-                    <% } %>
-              </table>
-
-              <p>This poll ended on <span class="highlightColor highlightBold">
-                  <%= poll.end_date.toDateString() %>
-                </span>.</p>
-            </div>
+          <div class="container containerAll d-flex flex-column align-items-center">
+            <h1>This poll is clooooosed.</h1>
 
 
+          </div>
 
-
-
-            <% } %>
+          <% } %>
 
 </body>
 

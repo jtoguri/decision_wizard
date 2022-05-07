@@ -51,7 +51,7 @@ module.exports = (db) => {
 
     getPollByUUID: (uuid) => {
       const queryString = `
-        SELECT polls.question, array_agg(choices.id) AS ids, array_agg(choices.title) AS choices,
+        SELECT polls.question, polls.end_date, array_agg(choices.id) AS ids, array_agg(choices.title) AS choices,
         array_agg(choices.description) AS descriptions
           FROM choices
             JOIN polls on polls.id = choices.poll_id
