@@ -95,9 +95,7 @@
         <div class="my-4 py-4 linkContainer">
           <form class="form" action="<%=`/api/polls/${poll.external_uuid}/close`%>" name="<%=`${poll.uuid}`%>"
             method="post">
-            <!-- <i id="removeIcon" class="fa-solid fa-remove"></i> -->
-            <!-- <button class="btn btn-outline-secondary btn-lg" type="submit">Close this poll</button> -->
-            <button id="closeButton" type="submit">Close this poll</button>
+            <button id="closeButton" type="submit">Close Poll <i class="fa-regular fa-trash-can"></i></button>
           </form>
         </div>
       </div>

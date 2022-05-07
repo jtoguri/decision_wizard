@@ -16,7 +16,7 @@ $(document).ready(function () {
       console.log(data);
 
       const result = $(`<div id="pollResults">
-        <h1 id="pollh1">Current Results:</h1>
+        <h1 id="pollh1">Current Results</h1>
         <table id="resultsTable">
           <thead>
             <tr>

@@ -96,7 +96,6 @@ body {
   color: black;
 }
 
-
 .removeOption {
   // font-family: "Bowlby One", cursive;
   font-family: "Permanent Marker", cursive;
@@ -239,13 +238,13 @@ table tr:last-child td:last-child {
 }
 
 // ---
-tr>td:last-of-type {
+tr > td:last-of-type {
   text-align: center;
   font-family: "Alfa Slab One", cursive;
   // font-weight: bold;
 }
 
-tr>td:first-of-type {
+tr > td:first-of-type {
   padding-left: 10px;
 }
 
@@ -346,16 +345,20 @@ h1 {
 #closeButton {
   font-family: "Jost", sans-serif;
   background-color: transparent;
-  color: #bfc6cd;
-  border: 2px solid #bfc6cd;
+  background-color: #d64933;
+  // color: #bfc6cd;
+  // color: #d64933;
+  color: white;
+  // border: 2px solid #bfc6cd;
+  border: 2px solid #d64933;
   border-radius: 0.5em;
-  padding: .5em;
+  padding: 0.5em;
 }
 
 #closeButton:hover {
-  border: 3px solid #b2b9c1;
+  border: 3px solid #d64933;
+  // border: 3px solid #b2b9c1;
 }
-
 
 #copyButton {
   border: none;
@@ -450,7 +453,7 @@ h1 {
   padding: 0.75em;
 }
 
-.bottomPortion>* {
+.bottomPortion > * {
   margin-bottom: 0;
 }
 
@@ -473,7 +476,8 @@ h1 {
   // color: white;
 }
 
-.pollTitle {}
+.pollTitle {
+}
 
 .smallText {
   font-family: "Jost", sans-serif;
@@ -487,7 +491,8 @@ h1 {
   margin-bottom: 3em;
 }
 
-#usersPolls {}
+#usersPolls {
+}
 
 .paddingAdjust {
   padding-left: 5em;
@@ -500,7 +505,8 @@ h1 {
   margin-top: 9em;
 }
 
-.mainText {}
+.mainText {
+}
 
 #about {
   font-family: "Jost", sans-serif;
@@ -533,7 +539,8 @@ h1 {
   font-size: xx-large;
 }
 
-.socialIcons a {}
+.socialIcons a {
+}
 
 #textSection {
   width: 57%;
@@ -546,7 +553,7 @@ h1 {
   justify-content: center;
 }
 
-#flexContainer>* {
+#flexContainer > * {
   margin-bottom: 2em;
 }
 
